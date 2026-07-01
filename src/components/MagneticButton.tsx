@@ -57,7 +57,14 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
       className="inline-block"
     >
       {href ? (
-        <a href={href} download={download} className={buttonClasses} onClick={onClick}>
+        <a 
+          href={href} 
+          download={download} 
+          className={buttonClasses} 
+          onClick={onClick}
+          target={download ? "_blank" : undefined}
+          rel={download ? "noopener noreferrer" : undefined}
+        >
           {children}
         </a>
       ) : (
