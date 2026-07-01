@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
         
         {/* Dynamic Typing Title container with a locked single-line height */}
         <div className="w-full min-h-[60px] sm:min-h-[80px] md:min-h-[100px] lg:min-h-[120px] flex items-center justify-center mb-6 py-1">
-          <h1 className="font-sans font-black text-3xl sm:text-4xl md:text-6xl lg:text-7xl tracking-tight leading-tight select-none">
+          <h1 className="font-sans font-black text-[26px] sm:text-4xl md:text-5xl lg:text-7xl tracking-tight leading-tight select-none whitespace-nowrap">
             <TypingTitle />
           </h1>
         </div>
