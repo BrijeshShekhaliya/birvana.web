@@ -31,15 +31,58 @@ export const DeleteAccount: React.FC = () => {
   });
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (session?.user) {
+        // Detect if this is a newly created account from Google OAuth
+        const created = new Date(session.user.created_at).getTime();
+        const lastSignIn = session.user.last_sign_in_at 
+          ? new Date(session.user.last_sign_in_at).getTime()
+          : created;
+        
+        const isNewUser = Math.abs(lastSignIn - created) < 5000; // created within 5s of sign in
+        
+        if (isNewUser) {
+          // Immediately clean up the newly created user and reject
+          await supabase.rpc('delete_user');
+          await supabase.auth.signOut();
+          setSession(null);
+          updateAuthState({ 
+            error: 'This Google account is not registered. You cannot delete an account that does not exist.' 
+          });
+        } else {
+          setSession(session);
+        }
+      } else {
+        setSession(null);
+      }
       setCheckingAuth(false);
     });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (session?.user) {
+        // Detect if this is a newly created account from Google OAuth
+        const created = new Date(session.user.created_at).getTime();
+        const lastSignIn = session.user.last_sign_in_at 
+          ? new Date(session.user.last_sign_in_at).getTime()
+          : created;
+        
+        const isNewUser = Math.abs(lastSignIn - created) < 5000;
+        
+        if (isNewUser) {
+          await supabase.rpc('delete_user');
+          await supabase.auth.signOut();
+          setSession(null);
+          updateAuthState({ 
+            error: 'This Google account is not registered. You cannot delete an account that does not exist.' 
+          });
+        } else {
+          setSession(session);
+        }
+      } else {
+        setSession(null);
+      }
       setCheckingAuth(false);
     });
 
@@ -50,7 +93,10 @@ export const DeleteAccount: React.FC = () => {
     setAuthState(prev => ({ ...prev, ...updates }));
   };
 
-  const setAuthView = (view: AuthView) => updateAuthState({ view, error: null });
+  const setAuthView = (view: AuthView) => updateState({ view, error: null });
+
+  // Expose updateState locally for setAuthView to work correctly
+  const updateState = updateAuthState;
 
   // HANDLERS FOR AUTH
   const handleGoogleSignIn = async () => {
@@ -88,6 +134,9 @@ export const DeleteAccount: React.FC = () => {
     try {
       const { error } = await supabase.auth.signInWithOtp({
         email,
+        options: {
+          shouldCreateUser: false // Prevent creating a new user if it doesn't exist
+        }
       });
       if (error) throw error;
       updateAuthState({ 
