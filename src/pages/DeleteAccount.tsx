@@ -46,9 +46,7 @@ export const DeleteAccount: React.FC = () => {
           await supabase.rpc('delete_user');
           await supabase.auth.signOut();
           setSession(null);
-          updateAuthState({ 
-            error: 'This Google account is not registered. You cannot delete an account that does not exist.' 
-          });
+          alert('This Google account is not registered. You cannot delete an account that does not exist.');
         } else {
           setSession(session);
         }
@@ -74,9 +72,7 @@ export const DeleteAccount: React.FC = () => {
           await supabase.rpc('delete_user');
           await supabase.auth.signOut();
           setSession(null);
-          updateAuthState({ 
-            error: 'This Google account is not registered. You cannot delete an account that does not exist.' 
-          });
+          alert('This Google account is not registered. You cannot delete an account that does not exist.');
         } else {
           setSession(session);
         }
