@@ -9,6 +9,9 @@ import { DownloadSection } from './sections/DownloadSection';
 import { Footer } from './components/Footer';
 import { DeveloperPage } from './pages/DeveloperPage';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
+import { TermsOfUse } from './pages/TermsOfUse';
+import { Login } from './pages/Login';
+import { Profile } from './pages/Profile';
 import { PrivacyBanner } from './components/PrivacyBanner';
 
 // Forces scroll to top instantly on every route change
@@ -22,9 +25,9 @@ function ScrollToTop() {
 
 function LandingPage() {
   return (
-    <div className="bg-brand-bg text-brand-textPrimary overflow-x-hidden min-h-screen">
+    <div className="bg-brand-bg text-brand-textPrimary overflow-x-hidden min-h-screen flex flex-col">
       <Navigation />
-      <main>
+      <main className="flex-1">
         <HeroSection />
         <ManifestoSection />
         <FeatureSections />
@@ -42,8 +45,11 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/"          element={<LandingPage />} />
+        <Route path="/login"     element={<Login />} />
+        <Route path="/profile"   element={<Profile />} />
         <Route path="/developer" element={<DeveloperPage />} />
         <Route path="/privacy"   element={<PrivacyPolicy />} />
+        <Route path="/terms"     element={<TermsOfUse />} />
       </Routes>
       <PrivacyBanner />
     </>

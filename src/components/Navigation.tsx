@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { MagneticButton } from './MagneticButton';
+import { supabase } from '../lib/supabase';
+import type { Session } from '@supabase/supabase-js';
 
 export const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
   const location = useLocation();
   const isLandingPage = location.pathname === '/';
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,7 +109,15 @@ export const Navigation: React.FC = () => {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center gap-4">
+            <Link 
+              to={session ? "/profile" : "/login"}
+              className="text-brand-textSecondary hover:text-white transition-colors duration-300 font-sans text-sm font-semibold flex items-center gap-2"
+            >
+              <User size={16} />
+              {session ? 'Profile' : 'Log In'}
+            </Link>
+
             <MagneticButton
               variant="primary"
               className="!px-6 !h-12 !text-sm !flex !items-center"
@@ -142,6 +167,15 @@ export const Navigation: React.FC = () => {
           className="font-sans font-semibold text-2xl text-brand-textSecondary hover:text-brand-primary transition-colors duration-300"
         >
           Developer
+        </Link>
+
+        <Link
+          to={session ? "/profile" : "/login"}
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="font-sans font-semibold text-2xl text-brand-textSecondary hover:text-brand-primary transition-colors duration-300 flex items-center gap-2"
+        >
+          <User size={24} />
+          {session ? 'Profile' : 'Log In'}
         </Link>
 
         <div className="mt-4">

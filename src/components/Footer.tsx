@@ -48,10 +48,17 @@ export const Footer: React.FC = () => {
           </a>
 
           <Link 
-            to="/privacy" 
-            className="hover:text-brand-textSecondary transition-colors duration-300"
+            to="/terms"
+            className="flex items-center gap-2 hover:text-brand-textSecondary transition-colors duration-300"
           >
-            Privacy Policy
+            <span>Terms of Use</span>
+          </Link>
+          
+          <Link 
+            to="/privacy"
+            className="flex items-center gap-2 hover:text-brand-textSecondary transition-colors duration-300"
+          >
+            <span>Privacy Policy</span>
           </Link>
         </div>
 
