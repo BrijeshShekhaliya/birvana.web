@@ -1,0 +1,263 @@
+/* ═══════════════════════════════════════════════
+   BIRVANA DEVELOPER PAGE — CUSTOM STYLES
+   ═══════════════════════════════════════════════ */
+
+/* ── Performance: GPU compositing hints ─────── */
+canvas {
+  transform: translateZ(0);
+}
+
+/* Wave bar: pure CSS animation, no JS */
+@keyframes wave-pulse {
+  0%, 100% { transform: scaleY(1); }
+  50%       { transform: scaleY(var(--scale, 2.2)); }
+}
+
+.wave-bar {
+  transform-origin: bottom;
+  animation: wave-pulse var(--duration, 0.7s) var(--delay, 0s) ease-in-out infinite;
+  will-change: transform;
+}
+
+/* GlassPanel hover glow — CSS only */
+.glass-panel-root:hover .glass-panel-glow {
+  opacity: 1;
+}
+
+.glass-panel-root:hover {
+  box-shadow: 0 0 0 1px rgba(29,185,84,0.12);
+}
+
+/* (contain: removed — breaks fixed positioning in pinned scenes) */
+
+
+/* Hero code panel fade-in */
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero scroll fade — driven by CSS var updated on passive scroll event */
+.hero-parallax-section { --hero-scroll: 0; }
+
+.hero-content {
+  opacity: calc(1 - var(--hero-scroll) * 1.1);
+  transform: translateY(calc(var(--hero-scroll) * 20vh));
+  will-change: transform, opacity;
+}
+
+/* Scroll indicator bounce */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(7px); opacity: 1; }
+}
+.scroll-indicator-line { animation: scrollBounce 1.8s ease-in-out infinite; }
+
+
+
+/* SVG path drawing animation */
+@keyframes drawPath {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+
+.svg-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+/* Circuit trace animation */
+@keyframes traceFlow {
+  0%   { stroke-dashoffset: 200; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { stroke-dashoffset: 0;   opacity: 0.6; }
+}
+
+.circuit-trace {
+  stroke-dasharray: 200;
+  animation: traceFlow 2.5s linear infinite;
+}
+
+/* Glow text */
+.glow-text {
+  text-shadow:
+    0 0 20px rgba(29, 185, 84, 0.7),
+    0 0 40px rgba(29, 185, 84, 0.4),
+    0 0 80px rgba(29, 185, 84, 0.2);
+}
+
+/* Glass container — matches landing page dark bg */
+.dev-glass {
+  background: rgba(10, 10, 10, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+/* Scanning line */
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scan-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(29, 185, 84, 0.4), transparent);
+  animation: scanLine 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Data packet travel */
+@keyframes packetTravel {
+  0%   { offset-distance: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.data-packet {
+  animation: packetTravel 2s ease-in-out infinite;
+  offset-rotate: auto;
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: #1DB954;
+  margin-left: 2px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Waveform bars */
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.3); }
+  50%       { transform: scaleY(1); }
+}
+
+.wave-bar {
+  transform-origin: bottom;
+  animation: waveBar var(--duration, 0.8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Node connection pulse */
+@keyframes connectionPulse {
+  0%   { stroke-dashoffset: 100; opacity: 0.2; }
+  50%  { opacity: 0.8; }
+  100% { stroke-dashoffset: 0;   opacity: 0.2; }
+}
+
+/* Float card — static, no animation (reduces paint cost) */
+.float-card { }
+
+/* Code token colors */
+.token-keyword  { color: #c678dd; }
+.token-string   { color: #98c379; }
+.token-comment  { color: #5c6370; font-style: italic; }
+.token-number   { color: #d19a66; }
+.token-function { color: #61afef; }
+.token-type     { color: #e5c07b; }
+.token-operator { color: #56b6c2; }
+.token-variable { color: #e06c75; }
+.token-green    { color: #1DB954; }
+
+/* Performance gauge needle */
+@keyframes needleSweep {
+  from { transform: rotate(-90deg); }
+  to   { transform: rotate(90deg); }
+}
+
+/* Spinning orbit */
+@keyframes orbitSpin {
+  from { transform: rotate(0deg) translateX(var(--orbit-r, 120px)) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(var(--orbit-r, 120px)) rotate(-360deg); }
+}
+
+/* Hide scrollbar in dev page */
+.dev-page-container {
+  scrollbar-width: thin;
+  scrollbar-color: #1F1F1F #040404;
+}
+
+/* Gradient text */
+.gradient-text-green {
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Neon border */
+.neon-border {
+  box-shadow:
+    0 0 5px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Terminal */
+.dev-terminal {
+  background: #0a0a0a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #ccc;
+}
+
+.dev-terminal-header {
+  background: #111;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px 12px 0 0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Scene label badge */
+.scene-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 14px;
+  border-radius: 100px;
+  display: inline-block;
+}
+
+/* Animated gradient border */
+@keyframes borderSpin {
+  from { --border-angle: 0turn; }
+  to   { --border-angle: 1turn; }
+}
+
+@property --border-angle {
+  syntax: '<angle>';
+  initial-value: 0turn;
+  inherits: false;
+}
+
+.animated-border {
+  background:
+    linear-gradient(#111, #111) padding-box,
+    conic-gradient(from var(--border-angle), #1DB954, #0C3320, #1DB954) border-box;
+  border: 1px solid transparent;
+  animation: borderSpin 4s linear infinite;
+}

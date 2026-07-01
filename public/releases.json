@@ -1,0 +1,20 @@
+{
+  "latest": {
+    "version": "1.0.0",
+    "buildNumber": 1,
+    "date": "2025-06-30",
+    "channel": "stable",
+    "size": "110.8 MB",
+    "url": "/downloads/birvana.apk",
+    "sha256": "placeholder-sha256-hash",
+    "notes": [
+      "Initial release of Birvana",
+      "Stunning home screen with music discovery & personal recommendations",
+      "Blazing fast unified search supporting JioSaavn integration",
+      "Feature-rich library to manage tracks, playlists, and favorites",
+      "Advanced music player with dynamic, interactive visualizer",
+      "Under-the-hood performance optimizations powered by Stac Engine AI"
+    ]
+  },
+  "history": []
+}
