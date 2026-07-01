@@ -8,9 +8,16 @@ interface LoginViewProps {
   onLoginPassword: (email: string, pass: string) => void;
   onGoogleSignIn: () => void;
   loading: boolean;
+  showSignUp?: boolean;
 }
 
-export const LoginView: React.FC<LoginViewProps> = ({ setView, onLoginPassword, onGoogleSignIn, loading }) => {
+export const LoginView: React.FC<LoginViewProps> = ({ 
+  setView, 
+  onLoginPassword, 
+  onGoogleSignIn, 
+  loading,
+  showSignUp = true 
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -103,15 +110,17 @@ export const LoginView: React.FC<LoginViewProps> = ({ setView, onLoginPassword, 
         </button>
       </form>
 
-      <div className="mt-8 pt-4 border-t border-brand-borderSubtle/50 flex flex-col items-center gap-3">
-        <button 
-          type="button"
-          onClick={() => setView('register')}
-          className="text-sm text-brand-textMuted hover:text-white transition-colors font-sans"
-        >
-          Don't have an account? <span className="text-brand-primary font-semibold">Sign up</span>
-        </button>
-      </div>
+      {showSignUp && (
+        <div className="mt-8 pt-4 border-t border-brand-borderSubtle/50 flex flex-col items-center gap-3">
+          <button 
+            type="button"
+            onClick={() => setView('register')}
+            className="text-sm text-brand-textMuted hover:text-white transition-colors font-sans"
+          >
+            Don't have an account? <span className="text-brand-primary font-semibold">Sign up</span>
+          </button>
+        </div>
+      )}
     </motion.div>
   );
 };

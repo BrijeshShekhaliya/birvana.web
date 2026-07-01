@@ -12,6 +12,7 @@ import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { TermsOfUse } from './pages/TermsOfUse';
 import { Login } from './pages/Login';
 import { Profile } from './pages/Profile';
+import { DeleteAccount } from './pages/DeleteAccount';
 import { PrivacyBanner } from './components/PrivacyBanner';
 
 // Forces scroll to top instantly on every route change
@@ -47,6 +48,7 @@ function App() {
         <Route path="/"          element={<LandingPage />} />
         <Route path="/login"     element={<Login />} />
         <Route path="/profile"   element={<Profile />} />
+        <Route path="/delete"    element={<DeleteAccount />} />
         <Route path="/developer" element={<DeveloperPage />} />
         <Route path="/privacy"   element={<PrivacyPolicy />} />
         <Route path="/terms"     element={<TermsOfUse />} />
