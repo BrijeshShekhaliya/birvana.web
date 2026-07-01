@@ -34,13 +34,11 @@ export const DeleteAccount: React.FC = () => {
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
-        // Detect if this is a newly created account from Google OAuth
+        // Compare created_at time with the current time.
+        // If the account was created within the last 15 seconds, they just signed up via OAuth.
         const created = new Date(session.user.created_at).getTime();
-        const lastSignIn = session.user.last_sign_in_at 
-          ? new Date(session.user.last_sign_in_at).getTime()
-          : created;
-        
-        const isNewUser = Math.abs(lastSignIn - created) < 5000; // created within 5s of sign in
+        const now = Date.now();
+        const isNewUser = (now - created) < 15000; 
         
         if (isNewUser) {
           // Set error and clear loading immediately to prevent blocking the UI
@@ -71,13 +69,10 @@ export const DeleteAccount: React.FC = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
-        // Detect if this is a newly created account from Google OAuth
+        // Compare created_at time with the current time
         const created = new Date(session.user.created_at).getTime();
-        const lastSignIn = session.user.last_sign_in_at 
-          ? new Date(session.user.last_sign_in_at).getTime()
-          : created;
-        
-        const isNewUser = Math.abs(lastSignIn - created) < 5000;
+        const now = Date.now();
+        const isNewUser = (now - created) < 15000;
         
         if (isNewUser) {
           setSession(null);
