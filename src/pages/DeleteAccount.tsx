@@ -19,6 +19,7 @@ export const DeleteAccount: React.FC = () => {
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
+  const [errorPopup, setErrorPopup] = useState<string | null>(null);
 
   // Auth orchestration state for when user is not logged in
   const [authState, setAuthState] = useState<AuthFlowState>({
@@ -46,7 +47,7 @@ export const DeleteAccount: React.FC = () => {
           await supabase.rpc('delete_user');
           await supabase.auth.signOut();
           setSession(null);
-          alert('This Google account is not registered. You cannot delete an account that does not exist.');
+          setErrorPopup('This Google account is not registered. You cannot delete an account that does not exist.');
         } else {
           setSession(session);
         }
@@ -72,7 +73,7 @@ export const DeleteAccount: React.FC = () => {
           await supabase.rpc('delete_user');
           await supabase.auth.signOut();
           setSession(null);
-          alert('This Google account is not registered. You cannot delete an account that does not exist.');
+          setErrorPopup('This Google account is not registered. You cannot delete an account that does not exist.');
         } else {
           setSession(session);
         }
@@ -89,10 +90,10 @@ export const DeleteAccount: React.FC = () => {
     setAuthState(prev => ({ ...prev, ...updates }));
   };
 
-  const setAuthView = (view: AuthView) => updateState({ view, error: null });
-
   // Expose updateState locally for setAuthView to work correctly
   const updateState = updateAuthState;
+
+  const setAuthView = (view: AuthView) => updateState({ view, error: null });
 
   // HANDLERS FOR AUTH
   const handleGoogleSignIn = async () => {
@@ -354,6 +355,34 @@ export const DeleteAccount: React.FC = () => {
         </motion.div>
       </main>
       <Footer />
+
+      {/* Custom Error Popup Modal */}
+      <AnimatePresence>
+        {errorPopup && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm px-4">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-[#0A0A0A] border border-brand-borderSubtle rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl space-y-6"
+            >
+              <div className="text-red-500 flex justify-center">
+                <AlertTriangle size={48} />
+              </div>
+              <h3 className="text-xl font-bold text-white font-sans">Verification Failed</h3>
+              <p className="text-brand-textMuted text-sm font-sans leading-relaxed">
+                {errorPopup}
+              </p>
+              <button
+                onClick={() => setErrorPopup(null)}
+                className="w-full bg-white text-black font-semibold rounded-xl py-3 hover:bg-gray-200 transition-colors font-sans"
+              >
+                Dismiss
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
