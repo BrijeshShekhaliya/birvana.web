@@ -34,11 +34,19 @@ export const DeleteAccount: React.FC = () => {
   useEffect(() => {
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (session?.user) {
-        // Compare created_at time with the current time.
-        // If the account was created within the last 15 seconds, they just signed up via OAuth.
+        // Double-safeguard: Only run new user check if we just redirected from an OAuth flow.
+        // Compare server-side timestamps (last_sign_in_at and created_at) to avoid client clock drift issues.
+        const hasAuthParams = window.location.hash.includes('access_token') || 
+                              window.location.search.includes('code=');
+        
         const created = new Date(session.user.created_at).getTime();
-        const now = Date.now();
-        const isNewUser = (now - created) < 15000; 
+        const lastSignIn = session.user.last_sign_in_at 
+          ? new Date(session.user.last_sign_in_at).getTime()
+          : null;
+        
+        const isNewUser = hasAuthParams && 
+                          lastSignIn !== null && 
+                          Math.abs(lastSignIn - created) < 5000;
         
         if (isNewUser) {
           // Set error and clear loading immediately to prevent blocking the UI
@@ -69,10 +77,17 @@ export const DeleteAccount: React.FC = () => {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       if (session?.user) {
-        // Compare created_at time with the current time
+        const hasAuthParams = window.location.hash.includes('access_token') || 
+                              window.location.search.includes('code=');
+        
         const created = new Date(session.user.created_at).getTime();
-        const now = Date.now();
-        const isNewUser = (now - created) < 15000;
+        const lastSignIn = session.user.last_sign_in_at 
+          ? new Date(session.user.last_sign_in_at).getTime()
+          : null;
+        
+        const isNewUser = hasAuthParams && 
+                          lastSignIn !== null && 
+                          Math.abs(lastSignIn - created) < 5000;
         
         if (isNewUser) {
           setSession(null);
