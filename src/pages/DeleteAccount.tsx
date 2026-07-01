@@ -43,18 +43,28 @@ export const DeleteAccount: React.FC = () => {
         const isNewUser = Math.abs(lastSignIn - created) < 5000; // created within 5s of sign in
         
         if (isNewUser) {
-          // Immediately clean up the newly created user and reject
-          await supabase.rpc('delete_user');
-          await supabase.auth.signOut();
+          // Set error and clear loading immediately to prevent blocking the UI
           setSession(null);
           setErrorPopup('This Google account is not registered. You cannot delete an account that does not exist.');
+          setCheckingAuth(false);
+          
+          // Run cleanup asynchronously in the background via IIFE
+          (async () => {
+            try {
+              await supabase.rpc('delete_user');
+              await supabase.auth.signOut();
+            } catch (err) {
+              console.error('Background delete failed:', err);
+            }
+          })();
         } else {
           setSession(session);
+          setCheckingAuth(false);
         }
       } else {
         setSession(null);
+        setCheckingAuth(false);
       }
-      setCheckingAuth(false);
     });
 
     const {
@@ -70,17 +80,26 @@ export const DeleteAccount: React.FC = () => {
         const isNewUser = Math.abs(lastSignIn - created) < 5000;
         
         if (isNewUser) {
-          await supabase.rpc('delete_user');
-          await supabase.auth.signOut();
           setSession(null);
           setErrorPopup('This Google account is not registered. You cannot delete an account that does not exist.');
+          setCheckingAuth(false);
+          
+          (async () => {
+            try {
+              await supabase.rpc('delete_user');
+              await supabase.auth.signOut();
+            } catch (err) {
+              console.error('Background delete failed:', err);
+            }
+          })();
         } else {
           setSession(session);
+          setCheckingAuth(false);
         }
       } else {
         setSession(null);
+        setCheckingAuth(false);
       }
-      setCheckingAuth(false);
     });
 
     return () => subscription.unsubscribe();
