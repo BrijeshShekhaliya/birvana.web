@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Download, ChevronDown, ChevronUp, FileCode2, Calendar, HardDrive, CheckCircle2 } from 'lucide-react';
 import { MagneticButton } from '../components/MagneticButton';
+import { supabase } from '../lib/supabase';
 
 interface ReleaseData {
   version: string;
@@ -19,37 +20,74 @@ export const DownloadSection: React.FC = () => {
   const [isNotesOpen, setIsNotesOpen] = useState(true);
 
   useEffect(() => {
-    fetch('/releases.json')
-      .then(res => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then(data => {
-        setRelease(data.latest);
+    const fetchLatestRelease = async () => {
+      try {
+        // 1. Try to fetch from Supabase first
+        const { data, error } = await supabase
+          .from('app_releases')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+          setRelease({
+            version: data.version,
+            buildNumber: data.build_number,
+            date: data.date,
+            channel: data.channel,
+            size: data.size,
+            url: data.url,
+            sha256: data.sha256 || '',
+            notes: data.notes || []
+          });
+          setIsLoading(false);
+          return;
+        }
+
+        // 2. Fallback to static releases.json if table is empty
+        const res = await fetch('/releases.json');
+        if (!res.ok) throw new Error("Local releases.json not found");
+        const localData = await res.json();
+        setRelease(localData.latest);
         setIsLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to fetch release metadata:", err);
-        // Fallback default matching design doc
-        setRelease({
-          version: "1.0.0",
-          buildNumber: 1,
-          date: "2025-06-30",
-          channel: "stable",
-          size: "110.8 MB",
-          url: "/downloads/birvana.apk",
-          sha256: "d50a7d9bb8c49e29a32c7104b2c1cd51a66a6a24687b37db8751ea9bbd6be1a5",
-          notes: [
-            "Initial release of Birvana",
-            "Stunning home screen with music discovery & personal recommendations",
-            "Blazing fast unified search supporting JioSaavn integration",
-            "Feature-rich library to manage tracks, playlists, and favorites",
-            "Advanced music player with dynamic, interactive visualizer",
-            "Under-the-hood performance optimizations powered by Stac Engine AI"
-          ]
-        });
-        setIsLoading(false);
-      });
+      } catch (err) {
+        console.warn("Failed to fetch release from Supabase, trying static releases.json:", err);
+        
+        // 3. Last fallback (hardcoded defaults)
+        fetch('/releases.json')
+          .then(res => res.json())
+          .then(localData => {
+            setRelease(localData.latest);
+            setIsLoading(false);
+          })
+          .catch(fallbackErr => {
+            console.error("Failed to load local releases.json fallback:", fallbackErr);
+            setRelease({
+              version: "1.0.0",
+              buildNumber: 1,
+              date: "2025-06-30",
+              channel: "stable",
+              size: "110.8 MB",
+              url: "/downloads/birvana.apk",
+              sha256: "d50a7d9bb8c49e29a32c7104b2c1cd51a66a6a24687b37db8751ea9bbd6be1a5",
+              notes: [
+                "Initial release of Birvana",
+                "Stunning home screen with music discovery & personal recommendations",
+                "Blazing fast unified search supporting JioSaavn integration",
+                "Feature-rich library to manage tracks, playlists, and favorites",
+                "Advanced music player with dynamic, interactive visualizer",
+                "Under-the-hood performance optimizations powered by Stac Engine AI"
+              ]
+            });
+            setIsLoading(false);
+          });
+      }
+    };
+
+    fetchLatestRelease();
   }, []);
 
   if (isLoading || !release) {
