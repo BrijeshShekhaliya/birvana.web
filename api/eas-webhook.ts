@@ -1,7 +1,6 @@
 /// <reference types="node" />
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
-import { Readable } from 'stream';
 
 // Disable default body parsing on Vercel to preserve the raw request stream for signature verification
 export const config = {
@@ -10,12 +9,19 @@ export const config = {
   },
 };
 
-async function getRawBody(readable: Readable): Promise<Buffer> {
-  const chunks = [];
-  for await (const chunk of readable) {
-    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
-  }
-  return Buffer.concat(chunks);
+function getRawBody(req: any): Promise<Buffer> {
+  return new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    req.on('data', (chunk: any) => {
+      chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+    });
+    req.on('end', () => {
+      resolve(Buffer.concat(chunks));
+    });
+    req.on('error', (err: any) => {
+      reject(err);
+    });
+  });
 }
 
 // Remove global client initialization to prevent startup crashes
