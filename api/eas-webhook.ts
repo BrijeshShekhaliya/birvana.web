@@ -18,16 +18,27 @@ async function getRawBody(readable: Readable): Promise<Buffer> {
   return Buffer.concat(chunks);
 }
 
-// Initialize Supabase client using Service Role key to bypass RLS for write access
-const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
+// Remove global client initialization to prevent startup crashes
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
+
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+
+  if (!supabaseUrl || !supabaseServiceKey) {
+    console.error(`Configuration Error: Missing env variables. URL exists: ${!!supabaseUrl}, Service Key exists: ${!!supabaseServiceKey}`);
+    return res.status(500).json({ 
+      error: 'Backend configuration error', 
+      details: { 
+        hasUrl: !!supabaseUrl, 
+        hasServiceKey: !!supabaseServiceKey 
+      } 
+    });
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   try {
     // 1. Get raw request body
