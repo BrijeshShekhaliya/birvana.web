@@ -49,6 +49,12 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({ message: `Event ignored (build status is ${build.status})` });
     }
 
+    // Only update website if the build profile is explicitly 'production'
+    // This ignores preview/testing builds (like development or internal testing)
+    if (build.profile !== 'production') {
+      return res.status(200).json({ message: `Event ignored (build profile is "${build.profile}", not "production")` });
+    }
+
     const version = build.appVersion;
     const buildNumber = parseInt(build.appBuildVersion, 10) || 1;
     const buildUrl = build.artifacts?.buildUrl;
