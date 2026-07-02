@@ -10,6 +10,19 @@
       ]
     }
   ],
+  "redirects": [
+    {
+      "source": "/((?!api/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "birvana.vercel.app"
+        }
+      ],
+      "destination": "https://birvana.indevs.in/$1",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/((?!assets/|downloads/|releases\\.json|favicon\\.svg|icons\\.svg|robots\\.txt|sitemap\\.xml).*)",
