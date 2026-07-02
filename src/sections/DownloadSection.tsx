@@ -70,7 +70,7 @@ export const DownloadSection: React.FC = () => {
               buildNumber: 1,
               date: "2025-06-30",
               channel: "stable",
-              size: "110.8 MB",
+              size: "58.5 MB",
               url: "/downloads/birvana.apk",
               sha256: "d50a7d9bb8c49e29a32c7104b2c1cd51a66a6a24687b37db8751ea9bbd6be1a5",
               notes: [

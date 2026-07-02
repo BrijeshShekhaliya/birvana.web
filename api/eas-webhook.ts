@@ -85,7 +85,7 @@ export default async function handler(req: any, res: any) {
       .split('T')[0];
 
     // Estimate file size if not provided by EAS (EAS doesn't always expose exact size directly in root payload)
-    const size = '112.5 MB'; 
+    const size = '58.5 MB'; 
 
     console.log(`Registering new release: v${version} (${buildNumber}) - URL: ${buildUrl}`);
 
