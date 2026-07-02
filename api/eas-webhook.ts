@@ -2,29 +2,7 @@
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 
-// Disable default body parsing on Vercel to preserve the raw request stream for signature verification
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-function getRawBody(req: any): Promise<Buffer> {
-  return new Promise((resolve, reject) => {
-    const chunks: Buffer[] = [];
-    req.on('data', (chunk: any) => {
-      chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
-    });
-    req.on('end', () => {
-      resolve(Buffer.concat(chunks));
-    });
-    req.on('error', (err: any) => {
-      reject(err);
-    });
-  });
-}
-
-// Remove global client initialization to prevent startup crashes
+// Vercel Serverless Functions pre-parse req.body automatically. We read it directly.
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -47,10 +25,7 @@ export default async function handler(req: any, res: any) {
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
   try {
-    // 1. Get raw request body
-    const rawBody = await getRawBody(req);
-
-    // 2. Verify EAS Webhook signature (HMAC-SHA1) if secret is configured
+    // 1. Verify EAS Webhook signature (HMAC-SHA1) if secret is configured
     const webhookSecret = process.env.EXPO_WEBHOOK_SECRET;
     if (webhookSecret) {
       const signature = req.headers['expo-signature'];
@@ -58,8 +33,10 @@ export default async function handler(req: any, res: any) {
         return res.status(401).json({ error: 'Missing expo-signature header' });
       }
 
+      // Reconstruct payload string from Vercel's pre-parsed req.body
+      const payloadString = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
       const hmac = crypto.createHmac('sha1', webhookSecret);
-      hmac.update(rawBody);
+      hmac.update(payloadString);
       const expectedSignature = hmac.digest('hex');
 
       if (signature !== expectedSignature) {
@@ -67,8 +44,8 @@ export default async function handler(req: any, res: any) {
       }
     }
 
-    // 3. Parse payload
-    const payload = JSON.parse(rawBody.toString('utf8'));
+    // 2. Parse payload
+    const payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
     const { eventType, build } = payload;
 
     console.log(`Received EAS Webhook event: ${eventType}`);
