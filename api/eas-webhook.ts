@@ -67,7 +67,7 @@ export default async function handler(req: any, res: any) {
     const buildProfile = build.metadata?.buildProfile || build.buildProfile || build.profile;
     
     // We allow 'production' or 'preview' builds to register on the site
-    const allowedProfiles = ['production', 'preview'];
+    const allowedProfiles = ['preview'];
     if (!allowedProfiles.includes(buildProfile)) {
       return res.status(200).json({ message: `Event ignored (build profile is "${buildProfile}", not in allowed list)` });
     }
