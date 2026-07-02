@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://indevs.in/sitemap.xml
+Sitemap: https://birvana.indevs.in/sitemap.xml
