@@ -1,6 +1,22 @@
 /// <reference types="node" />
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
+import { Readable } from 'stream';
+
+// Disable default body parsing on Vercel to preserve the raw request stream for signature verification
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+async function getRawBody(readable: Readable): Promise<Buffer> {
+  const chunks = [];
+  for await (const chunk of readable) {
+    chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks);
+}
 
 // Initialize Supabase client using Service Role key to bypass RLS for write access
 const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
@@ -14,7 +30,10 @@ export default async function handler(req: any, res: any) {
   }
 
   try {
-    // 1. Verify EAS Webhook signature if secret is configured
+    // 1. Get raw request body
+    const rawBody = await getRawBody(req);
+
+    // 2. Verify EAS Webhook signature (HMAC-SHA1) if secret is configured
     const webhookSecret = process.env.EXPO_WEBHOOK_SECRET;
     if (webhookSecret) {
       const signature = req.headers['expo-signature'];
@@ -22,17 +41,17 @@ export default async function handler(req: any, res: any) {
         return res.status(401).json({ error: 'Missing expo-signature header' });
       }
 
-      const hmac = crypto.createHmac('sha256', webhookSecret);
-      hmac.update(typeof req.body === 'string' ? req.body : JSON.stringify(req.body));
-      const expectedSignature = `sha256=${hmac.digest('hex')}`;
+      const hmac = crypto.createHmac('sha1', webhookSecret);
+      hmac.update(rawBody);
+      const expectedSignature = hmac.digest('hex');
 
       if (signature !== expectedSignature) {
         return res.status(401).json({ error: 'Invalid webhook signature' });
       }
     }
 
-    // 2. Parse payload
-    const payload = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    // 3. Parse payload
+    const payload = JSON.parse(rawBody.toString('utf8'));
     const { eventType, build } = payload;
 
     console.log(`Received EAS Webhook event: ${eventType}`);
@@ -50,10 +69,13 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({ message: `Event ignored (build status is ${build.status})` });
     }
 
-    // Only update website if the build profile is explicitly 'production'
-    // This ignores preview/testing builds (like development or internal testing)
-    if (build.profile !== 'production') {
-      return res.status(200).json({ message: `Event ignored (build profile is "${build.profile}", not "production")` });
+    // Correctly resolve build profile (EAS places it inside build.metadata.buildProfile)
+    const buildProfile = build.metadata?.buildProfile || build.buildProfile || build.profile;
+    
+    // We allow 'production' or 'preview' builds to register on the site
+    const allowedProfiles = ['production', 'preview'];
+    if (!allowedProfiles.includes(buildProfile)) {
+      return res.status(200).json({ message: `Event ignored (build profile is "${buildProfile}", not in allowed list)` });
     }
 
     const version = build.appVersion;
@@ -73,21 +95,21 @@ export default async function handler(req: any, res: any) {
 
     console.log(`Registering new release: v${version} (${buildNumber}) - URL: ${buildUrl}`);
 
-    // 3. Upsert into Supabase app_releases table
-    // If the version and build number already exists, update it, otherwise insert new
+    // 4. Upsert into Supabase app_releases table
     const { error: dbError } = await supabase
       .from('app_releases')
       .upsert({
         version,
         build_number: buildNumber,
         date: dateFormatted,
-        channel: build.sdkVersion ? 'stable' : 'preview',
+        channel: buildProfile === 'production' ? 'stable' : 'preview',
         size,
         url: buildUrl,
         notes: [
           `Build compiled automatically on Expo EAS.`,
           `Triggered by platform: ${build.platform}.`,
-          `EAS Build ID: ${build.id}`
+          `EAS Build ID: ${build.id}`,
+          `EAS Build Profile: ${buildProfile}`
         ]
       }, {
         onConflict: 'version,build_number'
