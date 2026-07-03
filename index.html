@@ -31,29 +31,35 @@
     <meta property="twitter:description" content="Discover, search, and play millions of songs with a beautiful, intelligent interface built for audiophiles." />
     <meta property="twitter:image" content="https://birvana.indevs.in/assets/phone_home_rich_final2.png" />
     
+    <!-- Google Site Name Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Birvana",
+        "alternateName": [
+          "birvana.indevs.in",
+          "Birvana Music"
+        ],
+        "url": "https://birvana.indevs.in/"
+      }
+    </script>
+
     <!-- Application Schema for Google (JSON-LD) -->
     <script type="application/ld+json">
-      [
-        {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Birvana",
-          "operatingSystem": "Android",
-          "applicationCategory": "MultimediaApplication",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "description": "Birvana is a gorgeous, premium music client for Android with smart discovery, a powerful offline library, and lossless audio support."
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Birvana",
+        "operatingSystem": "Android",
+        "applicationCategory": "MultimediaApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
         },
-        {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "Birvana",
-          "url": "https://birvana.indevs.in/"
-        }
-      ]
+        "description": "Birvana is a gorgeous, premium music client for Android with smart discovery, a powerful offline library, and lossless audio support."
+      }
     </script>
 
     <!-- Google Fonts -->
