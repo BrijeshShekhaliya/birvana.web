@@ -2,7 +2,9 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/assets/icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" type="image/png" href="/assets/icon.png" />
+    <link rel="apple-touch-icon" href="/assets/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Core SEO Meta Tags -->
@@ -31,19 +33,27 @@
     
     <!-- Application Schema for Google (JSON-LD) -->
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Birvana",
-        "operatingSystem": "Android",
-        "applicationCategory": "MultimediaApplication",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Birvana",
+          "operatingSystem": "Android",
+          "applicationCategory": "MultimediaApplication",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "description": "Birvana is a gorgeous, premium music client for Android with smart discovery, a powerful offline library, and lossless audio support."
         },
-        "description": "Birvana is a gorgeous, premium music client for Android with smart discovery, a powerful offline library, and lossless audio support."
-      }
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Birvana",
+          "url": "https://birvana.indevs.in/"
+        }
+      ]
     </script>
 
     <!-- Google Fonts -->
