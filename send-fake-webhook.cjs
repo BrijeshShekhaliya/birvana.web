@@ -18,11 +18,11 @@ const payload = {
     status: "finished",
     platform: "android",
     appVersion: "1.0.0", 
-    appBuildVersion: "6", 
-    completedAt: "2026-07-03T11:13:00.000Z",
-    createdAt: "2026-07-03T10:48:00.000Z",
+    appBuildVersion: "7", 
+    completedAt: "2026-07-03T12:05:00.000Z",
+    createdAt: "2026-07-03T11:35:00.000Z",
     artifacts: {
-      buildUrl: "https://expo.dev/artifacts/eas/66hVU8_JvbPyGx-okZ5LVVYYJgNHYJ1cLGMCeflvWfk.apk" 
+      buildUrl: "https://expo.dev/artifacts/eas/QpCNnObjfS8htrE-EyCnFzlD_NKfZC7wpU__1hCKZuk.apk" 
     },
     metadata: {
       buildProfile: "preview"

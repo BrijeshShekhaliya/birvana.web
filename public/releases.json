@@ -1,16 +1,18 @@
 {
   "latest": {
     "version": "1.0.0",
-    "buildNumber": 6,
+    "buildNumber": 7,
     "date": "2026-07-03",
     "channel": "preview",
     "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/66hVU8_JvbPyGx-okZ5LVVYYJgNHYJ1cLGMCeflvWfk.apk",
+    "url": "https://expo.dev/artifacts/eas/QpCNnObjfS8htrE-EyCnFzlD_NKfZC7wpU__1hCKZuk.apk",
     "sha256": "",
     "notes": [
-      "Fixed horizontal scroll-back position resetting on home screen.",
-      "Eliminated 10-15s stale data caching flash when toggling STAC engine.",
-      "Added visual build verification badge next to greeting."
+      "Implemented YouTube Music style autoplay recommendations for single tracks.",
+      "Resolved player context lingering issue when transitioning from playlists.",
+      "Added edge Ambient Light support for OnePlus, Vivo, and other Android devices.",
+      "Added Android 13+ media access and notifications runtime permissions prompt.",
+      "Replaced double launch loaders with a premium spring-zoom splash reveal."
     ]
   },
   "history": []
