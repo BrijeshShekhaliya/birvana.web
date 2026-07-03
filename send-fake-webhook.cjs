@@ -6,7 +6,7 @@ const url = 'birvana.indevs.in';
 const path = '/api/eas-webhook';
 
 const payload = {
-  id: "fake-event-id-" + Math.floor(Math.random() * 1000),
+  id: "real-webhook-forward-a6e5bce8",
   eventType: "build.finished",
   project: {
     id: "d71bb4b4-2313-4a93-8734-54c894b4d6e9",
@@ -14,18 +14,18 @@ const payload = {
     owner: "brijesh_shekhaliya"
   },
   build: {
-    id: "fake-build-id-" + Math.floor(Math.random() * 1000),
+    id: "a6e5bce8-7225-4e01-b52f-0401bfd980fe",
     status: "finished",
     platform: "android",
-    appVersion: "1.1.0", // Fake new version to verify update
-    appBuildVersion: "3", // Fake new build number
-    completedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
+    appVersion: "1.0.0", 
+    appBuildVersion: "4", 
+    completedAt: "2026-07-03T06:58:01.957Z",
+    createdAt: "2026-07-03T06:41:54.342Z",
     artifacts: {
-      buildUrl: "https://github.com/BrijeshShekhaliya/birvana-app/releases/download/v1.0.0/Birvana.apk" // Real APK for direct download link
+      buildUrl: "https://expo.dev/artifacts/eas/zq7_d2PgzP2e9rbMq00qV73E3E9AmlhiCnhZuIlnn80.apk" 
     },
     metadata: {
-      buildProfile: "production"
+      buildProfile: "preview"
     }
   }
 };
