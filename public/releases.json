@@ -1,11 +1,11 @@
 {
   "latest": {
     "version": "1.0.0",
-    "buildNumber": 5,
+    "buildNumber": 6,
     "date": "2026-07-03",
     "channel": "preview",
     "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/ALRVkYyzAmt3WP4y4UkiG_vHiMtg-ivAfyNQ26n1S1M.apk",
+    "url": "https://expo.dev/artifacts/eas/66hVU8_JvbPyGx-okZ5LVVYYJgNHYJ1cLGMCeflvWfk.apk",
     "sha256": "",
     "notes": [
       "Fixed horizontal scroll-back position resetting on home screen.",
