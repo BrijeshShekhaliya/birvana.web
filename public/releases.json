@@ -1,16 +1,16 @@
 {
   "latest": {
     "version": "1.0.0",
-    "buildNumber": 4,
+    "buildNumber": 5,
     "date": "2026-07-03",
     "channel": "preview",
     "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/zq7_d2PgzP2e9rbMq00qV73E3E9AmlhiCnhZuIlnn80.apk",
+    "url": "https://expo.dev/artifacts/eas/ALRVkYyzAmt3WP4y4UkiG_vHiMtg-ivAfyNQ26n1S1M.apk",
     "sha256": "",
     "notes": [
-      "Set native dark window background to eliminate white launch flash.",
-      "Optimized SWR home page caching for instant start.",
-      "Fixed custom website site name schema parameters."
+      "Fixed horizontal scroll-back position resetting on home screen.",
+      "Eliminated 10-15s stale data caching flash when toggling STAC engine.",
+      "Added visual build verification badge next to greeting."
     ]
   },
   "history": []
