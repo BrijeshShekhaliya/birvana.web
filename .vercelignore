@@ -1,0 +1,10 @@
+node_modules
+*.apk
+*.aab
+.env
+send-fake-webhook.cjs
+test-local-handler.cjs
+upload-apk.cjs
+api/eas-webhook.js
+api/eas-webhook.d.ts
+api/tsconfig.tsbuildinfo

@@ -1,19 +1,16 @@
 {
   "latest": {
     "version": "1.0.0",
-    "buildNumber": 1,
-    "date": "2025-06-30",
-    "channel": "stable",
+    "buildNumber": 4,
+    "date": "2026-07-03",
+    "channel": "preview",
     "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/g88IL9FkvbUZEnmD9j02tvaeDN7TwMExi8xyDQlfEds.aab",
-    "sha256": "placeholder-sha256-hash",
+    "url": "https://expo.dev/artifacts/eas/zq7_d2PgzP2e9rbMq00qV73E3E9AmlhiCnhZuIlnn80.apk",
+    "sha256": "",
     "notes": [
-      "Initial release of Birvana",
-      "Stunning home screen with music discovery & personal recommendations",
-      "Blazing fast unified search supporting JioSaavn integration",
-      "Feature-rich library to manage tracks, playlists, and favorites",
-      "Advanced music player with dynamic, interactive visualizer",
-      "Under-the-hood performance optimizations powered by Stac Engine AI"
+      "Set native dark window background to eliminate white launch flash.",
+      "Optimized SWR home page caching for instant start.",
+      "Fixed custom website site name schema parameters."
     ]
   },
   "history": []
