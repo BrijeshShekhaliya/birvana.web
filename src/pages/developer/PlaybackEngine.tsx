@@ -40,7 +40,7 @@ interface WaveformHandle {
   setPlaying: (v: boolean) => void;
 }
 
-const WaveformViz = React.forwardRef<WaveformHandle, Record<string, never>>((_props, handle) => {
+const WaveformViz = React.forwardRef<WaveformHandle, Record<string, unknown>>((_props, handle) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const progressRef = useRef(0.3);
   const playingRef  = useRef(false);
