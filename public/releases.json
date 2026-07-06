@@ -1,12 +1,12 @@
 {
   "latest": {
-    "version": "1.1.2",
-    "buildNumber": 15,
+    "version": "1.1.3",
+    "buildNumber": 19,
     "date": "2026-07-06",
     "channel": "preview",
-    "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/rapttmmGx1fJGUNXAU9tSzrLL_eqrtevnZRqghAH2KY.apk",
-    "sha256": "",
+    "size": "59.2 MB",
+    "url": "https://github.com/BrijeshShekhaliya/birvana.web/raw/main/public/releases/Birvana.apk",
+    "sha256": "367ef506be88b929944612b86465c9f5a9625273aee6cd880690ede701867478",
     "notes": [
       "Implemented YouTube Music style autoplay recommendations for single tracks.",
       "Resolved player context lingering issue when transitioning from playlists.",
