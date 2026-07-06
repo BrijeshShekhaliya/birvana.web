@@ -17,6 +17,38 @@ export const Profile: React.FC = () => {
   const [deleteConfirmEmail, setDeleteConfirmEmail] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [downloadUrl, setDownloadUrl] = useState<string>('https://github.com/BrijeshShekhaliya/birvana.web/releases');
+
+  useEffect(() => {
+    const fetchDownloadUrl = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('releases')
+          .select('url')
+          .order('created_at', { ascending: false })
+          .limit(1)
+          .maybeSingle();
+
+        if (data && data.url) {
+          setDownloadUrl(data.url);
+          return;
+        }
+
+        // Fallback to static releases.json if database is empty/inaccessible
+        const res = await fetch('/releases.json');
+        if (res.ok) {
+          const localData = await res.json();
+          if (localData?.latest?.url) {
+            setDownloadUrl(localData.latest.url);
+          }
+        }
+      } catch (err) {
+        console.warn("Failed to fetch download url, using fallback GitHub link:", err);
+      }
+    };
+
+    fetchDownloadUrl();
+  }, []);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -118,7 +150,8 @@ export const Profile: React.FC = () => {
               
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
                 <a 
-                  href="https://github.com/BrijeshShekhaliya/birvana.web/releases"
+                  href={downloadUrl}
+                  download="birvana.apk"
                   className="bg-brand-primary text-black px-6 py-2.5 rounded-full font-semibold text-sm font-sans flex items-center gap-2 hover:bg-white transition-colors"
                 >
                   <Download size={16} />
