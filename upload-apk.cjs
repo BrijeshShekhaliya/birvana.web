@@ -44,22 +44,22 @@ async function uploadApk() {
     console.log(`Target Public APK URL: ${publicUrl}`);
 
     // 4. Update Supabase 'app_releases' table
-    console.log('Registering version 1.1.3 in app_releases database table...');
+    console.log('Registering version 1.1.4 in app_releases database table...');
     const dateFormatted = new Date().toISOString().split('T')[0];
     const { error: dbError } = await supabase
       .from('app_releases')
       .upsert({
-        version: '1.1.3',
-        build_number: 19,
+        version: '1.1.4',
+        build_number: 21,
         date: dateFormatted,
         channel: 'preview',
         size: `${fileSizeMB} MB`,
         url: publicUrl,
         sha256: sha256Hash,
         notes: [
-          'Clean update matching version 1.1.3 release.',
-          'Removed unused photo and video permissions.',
-          'Fixed animating splash logo startup issue.'
+          'Updated Stac Audio Engine integration.',
+          'Improved local library caching and persistence.',
+          'Fixed profile screen stability issues.'
         ]
       }, {
         onConflict: 'version,build_number'
@@ -78,7 +78,7 @@ async function uploadApk() {
         .from('releases')
         .insert({
           url: publicUrl,
-          version: '1.1.3'
+          version: '1.1.4'
         });
       if (legacyDbError) {
         console.warn('Warning: Legacy releases table insert skipped/failed:', legacyDbError.message);
@@ -98,8 +98,8 @@ async function uploadApk() {
 
     const releases = JSON.parse(fs.readFileSync(releasesPath, 'utf8'));
     releases.latest.url = publicUrl;
-    releases.latest.version = '1.1.3';
-    releases.latest.buildNumber = 19;
+    releases.latest.version = '1.1.4';
+    releases.latest.buildNumber = 21;
     releases.latest.date = dateFormatted;
     releases.latest.size = `${fileSizeMB} MB`;
     releases.latest.sha256 = sha256Hash;
