@@ -271,56 +271,78 @@ export const DeleteAccount: React.FC = () => {
               </button>
             </motion.div>
           ) : session ? (
-            // CONFIRM DELETION STEP
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="space-y-6"
-            >
-              <div className="flex justify-center mb-4 shrink-0">
-                <AlertTriangle size={64} className="text-red-500 animate-pulse" />
-              </div>
-
-              <div className="text-center">
-                <h1 className="text-2xl font-black text-white">Confirm Deletion</h1>
-                <p className="text-brand-textMuted text-sm font-sans mt-2">
-                  You are logged in as <strong className="text-white">{session.user.email}</strong>.
+            session.user.email?.toLowerCase() === 'testuserbirvana01@gmail.com' ? (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center space-y-6"
+              >
+                <div className="flex justify-center mb-4 shrink-0">
+                  <AlertTriangle size={64} className="text-brand-primary" />
+                </div>
+                <h1 className="text-2xl font-black text-white font-sans">Action Restrained</h1>
+                <p className="text-brand-textMuted text-sm font-sans leading-relaxed">
+                  The Play Store review test account <strong className="text-white">{session.user.email}</strong> is system-protected and cannot be deleted.
                 </p>
-              </div>
-
-              <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-4 rounded-xl font-sans leading-relaxed">
-                This action is irreversible. All of your library data, customized settings, and platforms will be wiped instantly.
-              </div>
-
-              {authState.error && (
-                <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-lg font-sans">
-                  {authState.error}
-                </div>
-              )}
-
-              <div className="space-y-4">
-                <div className="space-y-1">
-                  <label className="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider pl-1">
-                    Type your email to confirm
-                  </label>
-                  <input 
-                    type="email"
-                    value={deleteConfirmEmail}
-                    onChange={(e) => setDeleteConfirmEmail(e.target.value)}
-                    placeholder={session.user.email}
-                    className="w-full bg-[#111] border border-brand-borderSubtle rounded-xl py-3 px-4 text-white focus:outline-none focus:border-red-500 transition-colors font-sans"
-                  />
-                </div>
-
                 <button 
-                  onClick={handleDeleteProfile}
-                  disabled={isDeleting || deleteConfirmEmail !== session.user.email}
-                  className="w-full py-3 rounded-xl font-semibold text-sm font-sans text-white bg-red-600 hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  onClick={() => navigate('/')}
+                  className="w-full bg-white text-black font-semibold rounded-xl py-3 hover:bg-gray-200 transition-colors font-sans"
                 >
-                  {isDeleting ? <Loader2 className="animate-spin" size={16} /> : 'Permanently Delete Account'}
+                  Go to Homepage
                 </button>
-              </div>
-            </motion.div>
+              </motion.div>
+            ) : (
+              // CONFIRM DELETION STEP
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="space-y-6"
+              >
+                <div className="flex justify-center mb-4 shrink-0">
+                  <AlertTriangle size={64} className="text-red-500 animate-pulse" />
+                </div>
+
+                <div className="text-center">
+                  <h1 className="text-2xl font-black text-white">Confirm Deletion</h1>
+                  <p className="text-brand-textMuted text-sm font-sans mt-2">
+                    You are logged in as <strong className="text-white">{session.user.email}</strong>.
+                  </p>
+                </div>
+
+                <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-4 rounded-xl font-sans leading-relaxed">
+                  This action is irreversible. All of your library data, customized settings, and platforms will be wiped instantly.
+                </div>
+
+                {authState.error && (
+                  <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm p-3 rounded-lg font-sans">
+                    {authState.error}
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  <div className="space-y-1">
+                    <label className="text-xs font-semibold text-brand-textSecondary uppercase tracking-wider pl-1">
+                      Type your email to confirm
+                    </label>
+                    <input 
+                      type="email"
+                      value={deleteConfirmEmail}
+                      onChange={(e) => setDeleteConfirmEmail(e.target.value)}
+                      placeholder={session.user.email}
+                      className="w-full bg-[#111] border border-brand-borderSubtle rounded-xl py-3 px-4 text-white focus:outline-none focus:border-red-500 transition-colors font-sans"
+                    />
+                  </div>
+
+                  <button 
+                    onClick={handleDeleteProfile}
+                    disabled={isDeleting || deleteConfirmEmail !== session.user.email}
+                    className="w-full py-3 rounded-xl font-semibold text-sm font-sans text-white bg-red-600 hover:bg-red-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  >
+                    {isDeleting ? <Loader2 className="animate-spin" size={16} /> : 'Permanently Delete Account'}
+                  </button>
+                </div>
+              </motion.div>
+            )
           ) : (
             // SIGN IN FLOW
             <div className="flex-1">

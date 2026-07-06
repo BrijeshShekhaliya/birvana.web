@@ -170,22 +170,24 @@ export const Profile: React.FC = () => {
         </div>
 
         {/* Danger Zone */}
-        <div className="bg-red-950/10 border border-red-900/20 rounded-3xl p-6 md:p-8">
-          <h3 className="text-red-500 font-bold font-sans text-lg flex items-center gap-2 mb-2">
-            <AlertTriangle size={20} />
-            Danger Zone
-          </h3>
-          <p className="text-brand-textMuted text-sm font-sans mb-6">
-            Permanently delete your Birvana account and all associated data. This action cannot be undone. If you are logged into the mobile app, you will be instantly logged out.
-          </p>
-          <button 
-            onClick={() => setShowDeleteModal(true)}
-            className="bg-red-500/10 text-red-500 border border-red-500/20 px-6 py-2.5 rounded-xl font-semibold text-sm font-sans flex items-center gap-2 hover:bg-red-500 hover:text-white transition-colors"
-          >
-            <Trash2 size={16} />
-            Delete Profile
-          </button>
-        </div>
+        {session?.user?.email?.toLowerCase() !== 'testuserbirvana01@gmail.com' && (
+          <div className="bg-red-950/10 border border-red-900/20 rounded-3xl p-6 md:p-8">
+            <h3 className="text-red-500 font-bold font-sans text-lg flex items-center gap-2 mb-2">
+              <AlertTriangle size={20} />
+              Danger Zone
+            </h3>
+            <p className="text-brand-textMuted text-sm font-sans mb-6">
+              Permanently delete your Birvana account and all associated data. This action cannot be undone. If you are logged into the mobile app, you will be instantly logged out.
+            </p>
+            <button 
+              onClick={() => setShowDeleteModal(true)}
+              className="bg-red-500/10 text-red-500 border border-red-500/20 px-6 py-2.5 rounded-xl font-semibold text-sm font-sans flex items-center gap-2 hover:bg-red-500 hover:text-white transition-colors"
+            >
+              <Trash2 size={16} />
+              Delete Profile
+            </button>
+          </div>
+        )}
 
       </motion.div>
 
