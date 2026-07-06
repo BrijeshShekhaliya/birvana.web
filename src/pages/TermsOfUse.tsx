@@ -44,9 +44,9 @@ export const TermsOfUse: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-white mb-4">4. Account Registration</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Account Registration & Data Ownership</h2>
             <p>
-              While you can use Birvana without an account, certain features (like cross-device syncing) may require account creation. You are responsible for maintaining the confidentiality of your account credentials. You have the right to permanently delete your account and associated data at any time via the profile settings.
+              While you can use Birvana's offline features without an account, cloud functions (like syncing custom playlists and favorites) require account creation. We do not share, sell, or monetize your email address or user-generated data. You retain full ownership of your credentials, settings, and playlists, and have the right to permanently delete your account and clear all stored data at any time via profile settings.
             </p>
           </section>
 

@@ -20,60 +20,66 @@ export const PrivacyPolicy: React.FC = () => {
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Introduction</h2>
             <p>
-              Welcome to Birvana. This Privacy Policy explains how we handle data when you use the Birvana application (the "App") and our website. We are committed to protecting your privacy. The core philosophy of Birvana is that your data belongs to you. We built our media player and discovery tool to function with maximum privacy.
+              Welcome to Birvana. This Privacy Policy explains how we collect, use, and safeguard your data when you use the Birvana mobile application (the "App") and our website. We are committed to protecting your privacy. Our core philosophy is that your personal data belongs to you, and we design our media features with maximum privacy and security in mind.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">2. Data We Do Not Collect</h2>
+            <h2 className="text-xl font-bold text-white mb-3">2. Data We Collect and How We Use It</h2>
             <p>
-              Birvana is designed as a standalone media player and audio discovery client. Because of this architecture, we <strong>do not</strong>:
+              Birvana operates primarily as a local media player. However, to enable personalized features, we collect the following limited information:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li>Require you to create a user account.</li>
-              <li>Collect, store, or sell your personal identifiable information (PII).</li>
-              <li>Track your exact location.</li>
-              <li>Monitor your local file system beyond what is strictly necessary to play your selected local media files.</li>
+              <li><strong>Account Credentials (Optional):</strong> If you choose to sign up or create an account, we collect your email address and authentication credentials. This is used solely to authenticate your session, save your custom playlists, and sync your app preferences.</li>
+              <li><strong>User Content:</strong> Any playlists, favorites, or settings you create within the App are stored securely in our database to sync across your devices.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">3. Application Permissions</h2>
+            <h2 className="text-xl font-bold text-white mb-3">3. Data Sharing and Protection</h2>
             <p>
-              To provide you with a high-fidelity audio experience, the Birvana App requires certain permissions on your Android device:
+              We prioritize data privacy above all else:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li><strong>Storage/Media Access:</strong> Required to scan, organize, and play the local audio files stored on your device. This data never leaves your device.</li>
-              <li><strong>Internet Access:</strong> Required to fetch album artwork, retrieve metadata, and stream public media catalogs in real-time.</li>
-              <li><strong>Foreground Service:</strong> Required to keep the audio engine running smoothly in the background while you use other apps or turn off your screen.</li>
+              <li><strong>No Data Selling or Sharing:</strong> We do not sell, trade, rent, or share your email address, personal information, or user content with third-party advertisers, companies, or analytics providers.</li>
+              <li><strong>Secure Transmission:</strong> All communications between the App, the website, and our database are encrypted in transit using industry-standard Secure Socket Layer (SSL/HTTPS) technology.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">4. Third-Party Services</h2>
+            <h2 className="text-xl font-bold text-white mb-3">4. User Rights and Data Deletion</h2>
             <p>
-              The App may interface with third-party APIs strictly to retrieve public media streams, lyrics, and metadata. When the App requests this data, your device communicates directly with these third-party servers. We do not intermediate or log these requests. Please note that these third-party services may log IP addresses as part of their standard server operations, governed by their respective privacy policies.
+              You maintain complete ownership of your account and personal data. You have the right to request deletion of your account and all associated data at any time:
             </p>
+            <ul className="list-disc pl-6 mt-3 space-y-2">
+              <li><strong>Account Deletion:</strong> You can permanently delete your account and clear all stored data by navigating to the "Danger Zone" in your Profile settings on either the mobile app or the website.</li>
+              <li><strong>Immediate Purge:</strong> Triggering account deletion instantly and permanently deletes your email, password, active session tokens, and all user content (playlists, favorites, history) from our live databases. This action is irreversible.</li>
+            </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">5. Website Cookies</h2>
+            <h2 className="text-xl font-bold text-white mb-3">5. Application Permissions</h2>
             <p>
-              Our website uses strictly necessary local storage to save your basic preferences (such as dismissing the privacy banner). We do not use cross-site tracking cookies or invasive analytics scripts.
+              To provide a premium audio experience, the Birvana App requires certain runtime permissions on your mobile device:
             </p>
+            <ul className="list-disc pl-6 mt-3 space-y-2">
+              <li><strong>Media Access:</strong> Required to scan, display, and play local audio files stored on your device. This content remains completely local and is never uploaded.</li>
+              <li><strong>Internet Access:</strong> Required to fetch album artwork, stream metadata, and connect to public royalty-free audio catalogs.</li>
+              <li><strong>Foreground Service & Notifications:</strong> Required to support background audio playback and control widgets while using other apps or when the screen is locked.</li>
+            </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">6. Changes to this Policy</h2>
+            <h2 className="text-xl font-bold text-white mb-3">6. Cookies and Storage</h2>
             <p>
-              We may update this Privacy Policy from time to time to reflect changes in our App's functionality or app store requirements. We encourage you to review this page periodically. Continued use of the App after changes are posted constitutes your acceptance of the updated policy.
+              Our website uses secure local browser storage to save basic preferences (such as dark mode settings and active sessions). We do not use cross-site tracking cookies, behavioral tracking scripts, or invasive analytics pixels.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">7. Contact Us</h2>
             <p>
-              If you have any questions or concerns regarding this Privacy Policy or our data practices, please contact the developer via our official GitHub repository.
+              If you have any questions, concerns, or inquiries regarding this Privacy Policy or our data deletion processes, please contact the developer via our official email: <strong>brijeshpatel48562@gmail.com</strong>.
             </p>
           </section>
 
