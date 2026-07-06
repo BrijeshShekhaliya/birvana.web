@@ -23,11 +23,12 @@ export const Profile: React.FC = () => {
     const fetchDownloadUrl = async () => {
       try {
         const { data, error } = await supabase
-          .from('releases')
+          .from('app_releases')
           .select('url')
-          .order('created_at', { ascending: false })
+          .order('version', { ascending: false })
+          .order('build_number', { ascending: false })
           .limit(1)
-          .maybeSingle();
+          .single();
 
         if (data && data.url) {
           setDownloadUrl(data.url);
