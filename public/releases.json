@@ -1,11 +1,11 @@
 {
   "latest": {
     "version": "1.0.0",
-    "buildNumber": 11,
-    "date": "2026-07-03",
+    "buildNumber": 15,
+    "date": "2026-07-06",
     "channel": "preview",
     "size": "58.5 MB",
-    "url": "https://expo.dev/artifacts/eas/vFjTB_e_AWpHmIEI65rRyiGX6nA7FNoP-APx5N2mxJQ.apk",
+    "url": "https://expo.dev/artifacts/eas/rapttmmGx1fJGUNXAU9tSzrLL_eqrtevnZRqghAH2KY.apk",
     "sha256": "",
     "notes": [
       "Implemented YouTube Music style autoplay recommendations for single tracks.",
