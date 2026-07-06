@@ -20,18 +20,18 @@ export const PrivacyPolicy: React.FC = () => {
           <section>
             <h2 className="text-xl font-bold text-white mb-3">1. Introduction</h2>
             <p>
-              Welcome to Birvana. This Privacy Policy explains how we collect, use, and safeguard your data when you use the Birvana mobile application (the "App") and our website. We are committed to protecting your privacy. Our core philosophy is that your personal data belongs to you, and we design our media features with maximum privacy and security in mind.
+              Welcome to Birvana. This Privacy Policy explains how we collect, use, and safeguard your data when you use the Birvana mobile application (the "App") and our website. We are committed to protecting your privacy. Our core philosophy is that your personal data belongs to you.
             </p>
           </section>
 
           <section>
             <h2 className="text-xl font-bold text-white mb-3">2. Data We Collect and How We Use It</h2>
             <p>
-              Birvana operates primarily as a local media player. However, to enable personalized features, we collect the following limited information:
+              We value your privacy and aim to collect as little data as possible. **We do not collect any personal data or user data other than your email address.**
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li><strong>Account Credentials (Optional):</strong> If you choose to sign up or create an account, we collect your email address and authentication credentials. This is used solely to authenticate your session, save your custom playlists, and sync your app preferences.</li>
-              <li><strong>User Content:</strong> Any playlists, favorites, or settings you create within the App are stored securely in our database to sync across your devices.</li>
+              <li><strong>Email Address (Required):</strong> To create an account and access the streaming service, we collect your email address. This is used solely for secure account authentication, user session management, and syncing your saved favorite tracks.</li>
+              <li><strong>Saved Favorites:</strong> If you save or unsave tracks from the royalty-free catalog, these choices are synced securely in our database so your saved track library is accessible on your profile.</li>
             </ul>
           </section>
 
@@ -41,7 +41,7 @@ export const PrivacyPolicy: React.FC = () => {
               We prioritize data privacy above all else:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li><strong>No Data Selling or Sharing:</strong> We do not sell, trade, rent, or share your email address, personal information, or user content with third-party advertisers, companies, or analytics providers.</li>
+              <li><strong>No Data Selling or Sharing:</strong> We do not sell, trade, rent, or share your email address or user-generated data with third-party advertisers, companies, or analytics providers. We do not use any third-party tracking scripts.</li>
               <li><strong>Secure Transmission:</strong> All communications between the App, the website, and our database are encrypted in transit using industry-standard Secure Socket Layer (SSL/HTTPS) technology.</li>
             </ul>
           </section>
@@ -53,7 +53,7 @@ export const PrivacyPolicy: React.FC = () => {
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
               <li><strong>Account Deletion:</strong> You can permanently delete your account and clear all stored data by navigating to the "Danger Zone" in your Profile settings on either the mobile app or the website.</li>
-              <li><strong>Immediate Purge:</strong> Triggering account deletion instantly and permanently deletes your email, password, active session tokens, and all user content (playlists, favorites, history) from our live databases. This action is irreversible.</li>
+              <li><strong>Immediate Purge:</strong> Triggering account deletion instantly and permanently deletes your email, password, active session tokens, and all saved favorites from our live databases. This action is irreversible.</li>
             </ul>
           </section>
 
@@ -63,9 +63,9 @@ export const PrivacyPolicy: React.FC = () => {
               To provide a premium audio experience, the Birvana App requires certain runtime permissions on your mobile device:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li><strong>Media Access:</strong> Required to scan, display, and play local audio files stored on your device. This content remains completely local and is never uploaded.</li>
-              <li><strong>Internet Access:</strong> Required to fetch album artwork, stream metadata, and connect to public royalty-free audio catalogs.</li>
-              <li><strong>Foreground Service & Notifications:</strong> Required to support background audio playback and control widgets while using other apps or when the screen is locked.</li>
+              <li><strong>Music & Audio Access (READ_MEDIA_AUDIO):</strong> Required to scan and play offline audio files already stored on your device. This content is kept strictly local on your device and is never uploaded.</li>
+              <li><strong>Internet Access:</strong> Required to fetch streaming content from our curated public royalty-free music catalog.</li>
+              <li><strong>Foreground Service & Notifications:</strong> Required to support background audio playback and display control widgets while using other apps or when the screen is locked.</li>
             </ul>
           </section>
 

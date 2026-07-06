@@ -32,21 +32,21 @@ export const TermsOfUse: React.FC = () => {
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">2. Description of Service</h2>
             <p>
-              Birvana is a media player and audio discovery client. The Service acts as a local media aggregator and playback engine. We do not host, store, or directly distribute copyrighted audio files on our servers.
+              Birvana is a media player and audio discovery client. The Service operates strictly as an aggregator and player for public royalty-free music, allowing users to browse, search, and stream from a curated index of free-to-use audio tracks.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">3. User Responsibilities</h2>
             <p>
-              You agree to use the Service only for lawful purposes. You are solely responsible for ensuring that you have the legal right to access and play any media content you stream or download through the Service. You agree not to use the Service to infringe upon the intellectual property rights of others.
+              You agree to use the Service only for personal, non-commercial purposes. You are solely responsible for ensuring that you have the legal right to access any local media files you play through the Service. You agree not to use the Service to infringe upon the intellectual property rights of others.
             </p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">4. Account Registration & Data Ownership</h2>
             <p>
-              While you can use Birvana's offline features without an account, cloud functions (like syncing custom playlists and favorites) require account creation. We do not share, sell, or monetize your email address or user-generated data. You retain full ownership of your credentials, settings, and playlists, and have the right to permanently delete your account and clear all stored data at any time via profile settings.
+              To use personalization features (such as saving favorite tracks to your library), you may create an account using your email address. We do not collect any personal data other than your email address. We do not share, sell, or monetize your email address or user-generated preferences. You have the right to permanently delete your account and clear all stored data at any time via your profile settings.
             </p>
           </section>
 
