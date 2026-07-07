@@ -34,11 +34,7 @@ export const Login: React.FC = () => {
     updateState({ loading: true, error: null });
     try {
       const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          // Explicitly redirect to the profile page to avoid fallback issues
-          redirectTo: `${window.location.origin}/profile`
-        }
+        provider: 'google'
       });
       if (error) throw error;
       // Redirect happens automatically

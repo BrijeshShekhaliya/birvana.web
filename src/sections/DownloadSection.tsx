@@ -128,9 +128,6 @@ export const DownloadSection: React.FC = () => {
           <div className="flex flex-col gap-4 w-full md:w-auto text-left">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3">
               <span className="font-sans font-black text-2xl text-white">Birvana for Android</span>
-              <span className="font-mono text-xs px-2.5 py-0.5 rounded-full bg-brand-primary/10 text-brand-primary border border-brand-primary/25 self-start sm:self-auto">
-                v{release.version}
-              </span>
             </div>
 
             <div className="grid grid-cols-2 md:flex md:items-center gap-x-6 gap-y-2.5 font-mono text-xs text-brand-textSecondary">
@@ -141,10 +138,6 @@ export const DownloadSection: React.FC = () => {
               <div className="flex items-center gap-1.5">
                 <HardDrive size={13} className="text-brand-textMuted" />
                 <span>{release.size}</span>
-              </div>
-              <div className="flex items-center gap-1.5 col-span-2 md:col-span-1">
-                <FileCode2 size={13} className="text-brand-textMuted" />
-                <span>{release.channel} build</span>
               </div>
             </div>
           </div>

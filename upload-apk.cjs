@@ -36,11 +36,9 @@ async function uploadApk() {
     // Copy APK to web public folder
     const destApkPath = path.join(destDir, 'Birvana.apk');
     console.log(`Copying APK to public web directory at ${destApkPath}...`);
-    fs.writeFileSync(destApkPath, fileBuffer);
-    console.log('APK copied successfully!');
-
-    // GitHub public raw asset URL
-    const publicUrl = 'https://github.com/BrijeshShekhaliya/birvana.web/raw/main/public/releases/Birvana.apk';
+    // Cloudflare R2 public URL
+    // We uploaded this with Content-Disposition: attachment, so it will download seamlessly!
+    const publicUrl = 'https://pub-c356460231d64956950b327b6efadbbf.r2.dev/Birvana%20aaplication/Birvana.apk';
     console.log(`Target Public APK URL: ${publicUrl}`);
 
     // 4. Update Supabase 'app_releases' table
