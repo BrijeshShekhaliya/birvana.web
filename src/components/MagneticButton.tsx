@@ -62,8 +62,6 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
           download={download} 
           className={buttonClasses} 
           onClick={onClick}
-          target={download ? "_blank" : undefined}
-          rel={download ? "noopener noreferrer" : undefined}
         >
           {children}
         </a>
