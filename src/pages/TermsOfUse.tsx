@@ -4,9 +4,6 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 
 export const TermsOfUse: React.FC = () => {
-  useEffect(() => {
-    document.title = 'Terms of Use | Birvana Music';
-  }, []);
 
   return (
     <div className="w-full min-h-screen bg-brand-bg text-brand-textPrimary flex flex-col selection:bg-brand-primary/30">
@@ -68,6 +65,13 @@ export const TermsOfUse: React.FC = () => {
             <h2 className="text-2xl font-bold text-white mb-4">7. Changes to Terms</h2>
             <p>
               We reserve the right to modify these Terms of Use at any time. Continued use of the Service following any changes constitutes your acceptance of the new terms.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">8. Contact Information</h2>
+            <p>
+              If you have any questions or feedback regarding these Terms of Use, please reach out to us at: <a href="mailto:birvana.official.in@gmail.com" style={{ color: '#4A90E2', textDecoration: 'none' }}><strong>birvana.official.in@gmail.com</strong></a>.
             </p>
           </section>
           

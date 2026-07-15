@@ -1,18 +1,17 @@
 {
   "latest": {
     "version": "1.1.4",
-    "buildNumber": 21,
-    "date": "2026-07-07",
+    "buildNumber": 22,
+    "date": "2026-07-10",
     "channel": "preview",
-    "size": "59.0 MB",
+    "size": "59.2 MB",
     "url": "https://pub-c356460231d64956950b327b6efadbbf.r2.dev/Birvana%20aaplication/Birvana.apk",
-    "sha256": "e9847868278ff892f1e72e0aa6b02ad671ff99a22e784e0572c5f1266fc376d3",
+    "sha256": "0aefae87fbc9a576ada430f5766dbd26c5f7ba75ed3bd0a4593257f1e6fb8194",
     "notes": [
-      "Implemented YouTube Music style autoplay recommendations for single tracks.",
-      "Resolved player context lingering issue when transitioning from playlists.",
-      "Added edge Ambient Light support for OnePlus, Vivo, and other Android devices.",
-      "Added Android 13+ media access and notifications runtime permissions prompt.",
-      "Replaced double launch loaders with a premium spring-zoom splash reveal."
+      "Added custom email change flow with 6-digit identity OTP.",
+      "Configured secure Gmail SMTP mailing to prevent delivery issues.",
+      "Under-the-hood optimization for audio streaming stability.",
+      "Bumps version code to 22."
     ]
   },
   "history": []

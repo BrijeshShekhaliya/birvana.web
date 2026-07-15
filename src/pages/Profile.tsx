@@ -151,19 +151,33 @@ export const Profile: React.FC = () => {
               
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-6">
                 <a 
+                  href="https://play.google.com/store/apps/details?id=com.birvana.mobile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-brand-primary text-black px-6 py-2.5 rounded-full font-bold text-sm font-sans flex items-center gap-2 hover:bg-white transition-colors"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                    <path fill="#4285F4" d="M3.25 2.5v19l8.5-8.5-8.5-8.5z"/>
+                    <path fill="#EA4335" d="M3.25 2.5l8.5 8.5 4.5-4.5-10-6c-.75-.45-2-.25-3 2z"/>
+                    <path fill="#34A853" d="M3.25 21.5c1 1.2 2.25 1.4 3 1l10-6-4.5-4.5-8.5 9.5z"/>
+                    <path fill="#FBBC05" d="M11.75 11l4.5-4.5 4.5 2.5c1 .55 1 1.45 0 2l-4.5 2.5-4.5-4.5z"/>
+                  </svg>
+                  <span>Get it on Google Play</span>
+                </a>
+                <a 
                   href={downloadUrl}
                   download="birvana.apk"
-                  className="bg-brand-primary text-black px-6 py-2.5 rounded-full font-semibold text-sm font-sans flex items-center gap-2 hover:bg-white transition-colors"
+                  className="bg-[#111] text-brand-textSecondary border border-brand-borderSubtle px-6 py-2.5 rounded-full font-semibold text-sm font-sans flex items-center gap-2 hover:text-white transition-colors"
                 >
-                  <Download size={16} />
-                  Download App
+                  <Download size={14} />
+                  <span>Download APK</span>
                 </a>
                 <button 
                   onClick={handleLogout}
-                  className="bg-[#111] text-brand-textSecondary border border-brand-borderSubtle px-6 py-2.5 rounded-full font-semibold text-sm font-sans flex items-center gap-2 hover:text-white transition-colors"
+                  className="bg-transparent text-brand-textMuted border border-transparent px-4 py-2.5 rounded-full font-semibold text-sm font-sans flex items-center gap-2 hover:text-white hover:bg-white/5 transition-all"
                 >
-                  <LogOut size={16} />
-                  Sign Out
+                  <LogOut size={14} />
+                  <span>Sign Out</span>
                 </button>
               </div>
             </div>

@@ -119,41 +119,71 @@ export const DownloadSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Primary Download Card */}
-        <div className="bg-brand-card border border-brand-borderSubtle rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-8 mb-12 shadow-2xl relative overflow-hidden group">
-          {/* subtle glow border */}
-          <div className="absolute inset-0 border border-brand-primary/10 rounded-3xl pointer-events-none group-hover:border-brand-primary/25 transition-colors duration-500"></div>
-
-          {/* Technical Specs columns */}
-          <div className="flex flex-col gap-4 w-full md:w-auto text-left">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3">
-              <span className="font-sans font-black text-2xl text-white">Birvana for Android</span>
+        {/* Primary Download Card Options Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+          
+          {/* Card 1: Play Store (Primary) */}
+          <div className="bg-brand-card border border-brand-primary/20 rounded-3xl p-6 md:p-8 flex flex-col justify-between gap-6 shadow-2xl relative overflow-hidden group">
+            {/* subtle glow border */}
+            <div className="absolute inset-0 border border-brand-primary/10 rounded-3xl pointer-events-none group-hover:border-brand-primary/35 transition-colors duration-500"></div>
+            
+            <div className="text-left space-y-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-brand-primary font-bold">Recommended</span>
+              <h3 className="font-sans font-black text-2xl text-white">Google Play Store</h3>
+              <p className="font-sans text-brand-textSecondary text-sm leading-relaxed">
+                Install the verified store version to receive automatic app updates and full cloud features seamlessly.
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 md:flex md:items-center gap-x-6 gap-y-2.5 font-mono text-xs text-brand-textSecondary">
-              <div className="flex items-center gap-1.5">
-                <Calendar size={13} className="text-brand-textMuted" />
-                <span>{release.date}</span>
-              </div>
-              <div className="flex items-center gap-1.5">
-                <HardDrive size={13} className="text-brand-textMuted" />
-                <span>{release.size}</span>
-              </div>
+            <div className="flex justify-start">
+              <MagneticButton 
+                variant="primary" 
+                className="!w-full !flex !items-center !justify-center !gap-3 !px-6 !py-4" 
+                href="https://play.google.com/store/apps/details?id=com.birvana.mobile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg viewBox="0 0 24 24" width="22" height="22" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                  <path fill="#4285F4" d="M3.25 2.5v19l8.5-8.5-8.5-8.5z"/>
+                  <path fill="#EA4335" d="M3.25 2.5l8.5 8.5 4.5-4.5-10-6c-.75-.45-2-.25-3 2z"/>
+                  <path fill="#34A853" d="M3.25 21.5c1 1.2 2.25 1.4 3 1l10-6-4.5-4.5-8.5 9.5z"/>
+                  <path fill="#FBBC05" d="M11.75 11l4.5-4.5 4.5 2.5c1 .55 1 1.45 0 2l-4.5 2.5-4.5-4.5z"/>
+                </svg>
+                <span>Get it on Google Play</span>
+              </MagneticButton>
             </div>
           </div>
 
-          {/* Primary Action CTA */}
-          <div className="shrink-0 w-full md:w-auto flex justify-center">
-            <MagneticButton 
-              variant="primary" 
-              className="!w-full md:!w-auto !flex !items-center !justify-center !gap-3 !px-8 !py-4.5" 
-              href={release.url}
-              download="birvana.apk"
-            >
-              <Download size={16} />
-              <span>Download APK</span>
-            </MagneticButton>
+          {/* Card 2: Direct Installer (APK) */}
+          <div className="bg-[#090909] border border-brand-borderSubtle rounded-3xl p-6 md:p-8 flex flex-col justify-between gap-6 shadow-2xl relative overflow-hidden group">
+            {/* subtle glow border */}
+            <div className="absolute inset-0 border border-white/5 rounded-3xl pointer-events-none group-hover:border-white/10 transition-colors duration-500"></div>
+            
+            <div className="text-left space-y-3">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-brand-textMuted font-bold">Standalone</span>
+              <h3 className="font-sans font-black text-2xl text-white">Direct APK Package</h3>
+              <p className="font-sans text-brand-textSecondary text-sm leading-relaxed">
+                Download the standalone package installer (.apk) directly for manual installation on your device.
+              </p>
+              
+              <div className="flex gap-4 font-mono text-[11px] text-brand-textMuted pt-2">
+                <span>Date: {release.date}</span>
+                <span>Size: {release.size}</span>
+              </div>
+            </div>
+
+            <div className="flex justify-start">
+              <a 
+                href={release.url}
+                download="birvana.apk"
+                className="w-full text-center bg-[#111] hover:bg-white border border-brand-borderSubtle hover:border-transparent text-white hover:text-black font-sans font-bold text-sm py-4.5 px-6 rounded-2xl transition-all flex items-center justify-center gap-2"
+              >
+                <Download size={15} />
+                <span>Download Standalone APK</span>
+              </a>
+            </div>
           </div>
+
         </div>
 
         {/* Release Notes Collapsible */}

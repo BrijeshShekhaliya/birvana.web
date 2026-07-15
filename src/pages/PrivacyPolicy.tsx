@@ -58,28 +58,36 @@ export const PrivacyPolicy: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">5. Application Permissions</h2>
+            <h2 className="text-xl font-bold text-white mb-3">5. Device Permissions and Data Security</h2>
             <p>
-              To provide a premium audio experience, the Birvana App requires certain runtime permissions on your mobile device:
+              To provide background audio streaming, offline audio scanning, and convenient media control capabilities, the Birvana App requests the following device permissions. We strictly respect your choices, and you can revoke these permissions at any time through your device system settings:
             </p>
             <ul className="list-disc pl-6 mt-3 space-y-2">
-              <li><strong>Music & Audio Access (READ_MEDIA_AUDIO):</strong> Required to scan and play offline audio files already stored on your device. This content is kept strictly local on your device and is never uploaded.</li>
-              <li><strong>Internet Access:</strong> Required to fetch streaming content from our curated public royalty-free music catalog.</li>
-              <li><strong>Foreground Service & Notifications:</strong> Required to support background audio playback and display control widgets while using other apps or when the screen is locked.</li>
+              <li><strong>Audio & Media Files Access (READ_MEDIA_AUDIO / READ_EXTERNAL_STORAGE):</strong> The App requests permission to scan your device's local directories. This is used solely to locate and build an offline media library of your own audio files. None of your local audio tracks, files, folder metadata, or personal media are ever uploaded, transmitted, or shared with our servers or any third parties. All offline playback processing remains strictly local.</li>
+              <li><strong>Device Notifications (POST_NOTIFICATIONS):</strong> This permission is requested on Android 13+ devices. It is used exclusively to display the active media playback control panel (play, pause, skip buttons, and track title) in your notification drawer and lock screen. We do not use this permission for marketing, spam, or promotional push alerts.</li>
+              <li><strong>Foreground Service (FOREGROUND_SERVICE):</strong> This permission allows our background audio player engine to run smoothly without interruption. This ensures that your audio stream continues playing when the screen is turned off or while you are multitasking in other applications.</li>
+              <li><strong>Network & Internet Access (INTERNET):</strong> Required to establish connection to our web services and stream licensed, public domain, and royalty-free music from our catalog servers.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">6. Cookies and Storage</h2>
+            <h2 className="text-xl font-bold text-white mb-3">6. Royalty-Free Music Catalog and Copyright</h2>
+            <p>
+              All online streaming contents, catalogues, and audio tracks indexed in our service are limited strictly to public domain assets, Creative Commons licenses, and royalty-free music directories. We comply fully with copyright guidelines and do not publish or distribute proprietary or copyright-restricted commercial music.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-bold text-white mb-3">7. Cookies and Storage</h2>
             <p>
               Our website uses secure local browser storage to save basic preferences (such as dark mode settings and active sessions). We do not use cross-site tracking cookies, behavioral tracking scripts, or invasive analytics pixels.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-bold text-white mb-3">7. Contact Us</h2>
+            <h2 className="text-xl font-bold text-white mb-3">8. Contact Us and Data Deletion Requests</h2>
             <p>
-              If you have any questions, concerns, or inquiries regarding this Privacy Policy or our data deletion processes, please contact the developer via our official email: <strong>brijeshpatel48562@gmail.com</strong>.
+              If you have any questions, concerns, or inquiries regarding this Privacy Policy, or if you wish to request manual deletion of your account and all stored synchronization data, please email our support team directly at: <a href="mailto:birvana.official.in@gmail.com" style={{ color: '#4A90E2', textDecoration: 'none' }}><strong>birvana.official.in@gmail.com</strong></a>. We will process all manual deletion requests within 48 hours.
             </p>
           </section>
 

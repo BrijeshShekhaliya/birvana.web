@@ -31,17 +31,65 @@
     <meta property="twitter:description" content="Discover, search, and play millions of songs with a beautiful, intelligent interface built for audiophiles." />
     <meta property="twitter:image" content="https://birvana.indevs.in/assets/birvana-mark.png" />
     
-    <!-- Google Site Name Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Birvana",
-        "alternateName": [
-          "birvana.indevs.in",
-          "Birvana Music"
-        ],
-        "url": "https://birvana.indevs.in/"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://birvana.indevs.in/#website",
+            "url": "https://birvana.indevs.in/",
+            "name": "Birvana",
+            "alternateName": [
+              "birvana.indevs.in",
+              "Birvana Music"
+            ],
+            "description": "Download Birvana, the ultimate free music app and premium music streaming application for Android. Enjoy a gorgeous UI, lossless audio, smart discovery, offline library, and unified search completely free.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://birvana.indevs.in/#sitelinks",
+            "name": "Birvana Pages",
+            "itemListElement": [
+              {
+                "@type": "SiteNavigationElement",
+                "position": 1,
+                "name": "Home",
+                "description": "Premium Music Streaming for Android landing page.",
+                "url": "https://birvana.indevs.in/"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 2,
+                "name": "Developer Portal",
+                "description": "Explore Birvana system architecture, cache strategy, playback engine, and APK distribution details.",
+                "url": "https://birvana.indevs.in/developer"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 3,
+                "name": "Log In",
+                "description": "Log in to your Birvana account to synchronize favorites and settings.",
+                "url": "https://birvana.indevs.in/login"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 4,
+                "name": "Privacy Policy",
+                "description": "Read Birvana privacy policy and data safety guidelines.",
+                "url": "https://birvana.indevs.in/privacy"
+              },
+              {
+                "@type": "SiteNavigationElement",
+                "position": 5,
+                "name": "Terms of Use",
+                "description": "Review the terms and conditions of using Birvana services.",
+                "url": "https://birvana.indevs.in/terms"
+              }
+            ]
+          }
+        ]
       }
     </script>
 

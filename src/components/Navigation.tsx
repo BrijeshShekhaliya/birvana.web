@@ -106,6 +106,16 @@ export const Navigation: React.FC = () => {
             >
               Developer
             </Link>
+
+            {session?.user?.email?.toLowerCase() === 'birvana.official.in@gmail.com' && (
+              <Link
+                to="/admin"
+                className={linkBaseClass}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Admin Panel
+              </Link>
+            )}
           </div>
 
           {/* Desktop CTA */}
@@ -168,6 +178,16 @@ export const Navigation: React.FC = () => {
         >
           Developer
         </Link>
+
+        {session?.user?.email?.toLowerCase() === 'birvana.official.in@gmail.com' && (
+          <Link
+            to="/admin"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="font-sans font-semibold text-2xl text-brand-textSecondary hover:text-brand-primary transition-colors duration-300"
+          >
+            Admin Panel
+          </Link>
+        )}
 
         <Link
           to={session ? "/profile" : "/login"}

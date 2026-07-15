@@ -8,6 +8,8 @@ interface MagneticButtonProps {
   className?: string;
   href?: string;
   download?: boolean | string;
+  target?: string;
+  rel?: string;
 }
 
 export const MagneticButton: React.FC<MagneticButtonProps> = ({
@@ -17,6 +19,8 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
   className = '',
   href,
   download,
+  target,
+  rel,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -60,6 +64,8 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
         <a 
           href={href} 
           download={download} 
+          target={target}
+          rel={rel}
           className={buttonClasses} 
           onClick={onClick}
         >

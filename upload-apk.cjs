@@ -36,6 +36,7 @@ async function uploadApk() {
     // Copy APK to web public folder
     const destApkPath = path.join(destDir, 'Birvana.apk');
     console.log(`Copying APK to public web directory at ${destApkPath}...`);
+    fs.copyFileSync(sourceApkPath, destApkPath);
     // Cloudflare R2 public URL
     // We uploaded this with Content-Disposition: attachment, so it will download seamlessly!
     const publicUrl = 'https://pub-c356460231d64956950b327b6efadbbf.r2.dev/Birvana%20aaplication/Birvana.apk';
@@ -48,16 +49,17 @@ async function uploadApk() {
       .from('app_releases')
       .upsert({
         version: '1.1.4',
-        build_number: 21,
+        build_number: 22,
         date: dateFormatted,
         channel: 'preview',
         size: `${fileSizeMB} MB`,
         url: publicUrl,
         sha256: sha256Hash,
         notes: [
-          'Updated Stac Audio Engine integration.',
-          'Improved local library caching and persistence.',
-          'Fixed profile screen stability issues.'
+          'Added custom email change flow with 6-digit identity OTP.',
+          'Configured secure Gmail SMTP mailing to prevent delivery issues.',
+          'Under-the-hood optimization for audio streaming stability.',
+          'Bumps version code to 22.'
         ]
       }, {
         onConflict: 'version,build_number'
@@ -97,10 +99,16 @@ async function uploadApk() {
     const releases = JSON.parse(fs.readFileSync(releasesPath, 'utf8'));
     releases.latest.url = publicUrl;
     releases.latest.version = '1.1.4';
-    releases.latest.buildNumber = 21;
+    releases.latest.buildNumber = 22;
     releases.latest.date = dateFormatted;
     releases.latest.size = `${fileSizeMB} MB`;
     releases.latest.sha256 = sha256Hash;
+    releases.latest.notes = [
+      'Added custom email change flow with 6-digit identity OTP.',
+      'Configured secure Gmail SMTP mailing to prevent delivery issues.',
+      'Under-the-hood optimization for audio streaming stability.',
+      'Bumps version code to 22.'
+    ];
     
     // Save updated JSON
     fs.writeFileSync(releasesPath, JSON.stringify(releases, null, 2) + '\n');
