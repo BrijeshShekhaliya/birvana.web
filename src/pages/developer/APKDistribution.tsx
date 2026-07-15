@@ -153,15 +153,16 @@ export const APKDistribution: React.FC = () => {
             </GlassPanel>
 
             <motion.a
-              href="#download"
-              onClick={(e) => { e.preventDefault(); document.querySelector('#download')?.scrollIntoView({ behavior: 'smooth' }); }}
+              href="https://play.google.com/store/apps/details?id=com.birvana.mobile"
+              target="_blank"
+              rel="noopener noreferrer"
               className="block dev-glass rounded-2xl p-6 text-center border border-white/10 hover:border-white/30 transition-all group cursor-pointer neon-border"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <div className="text-3xl mb-2">⬇️</div>
-              <div className="font-mono font-bold text-sm text-white group-hover:text-white transition-colors">Download Latest APK</div>
-              <div className="font-mono text-xs text-brand-textMuted mt-1">Direct install · No Play Store needed</div>
+              <div className="text-3xl mb-2">🛍️</div>
+              <div className="font-mono font-bold text-sm text-white group-hover:text-white transition-colors">Get App on Play Store</div>
+              <div className="font-mono text-xs text-brand-textMuted mt-1">Official verified store release</div>
             </motion.a>
           </div>
         </div>

@@ -39,7 +39,7 @@ export const Navigation: React.FC = () => {
     { name: 'Overview',  href: '/#hero' },
     { name: 'Features',  href: '/#features' },
     { name: 'Gallery',   href: '/#gallery' },
-    { name: 'Downloads', href: '/#download' },
+    { name: 'Install',   href: '/#download' },
   ];
 
   // On the landing page, hash links scroll smoothly.
@@ -139,7 +139,7 @@ export const Navigation: React.FC = () => {
                 }
               }}
             >
-              Download
+              Install
             </MagneticButton>
           </div>
 
@@ -212,7 +212,7 @@ export const Navigation: React.FC = () => {
               setIsMobileMenuOpen(false);
             }}
           >
-            Download APK
+            Install Birvana
           </MagneticButton>
         </div>
       </div>

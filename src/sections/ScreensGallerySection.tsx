@@ -107,11 +107,11 @@ export const ScreensGallerySection: React.FC = () => {
       </div>
 
       {/* Mobile / Tablet Horizontal Carousel */}
-      <div className="lg:hidden w-full overflow-x-auto px-6 py-4 flex gap-6 snap-x snap-mandatory scroll-smooth no-scrollbar">
+      <div className="lg:hidden w-full overflow-x-auto px-6 py-4 flex gap-6 scroll-smooth no-scrollbar">
         {screenshots.map((screen, idx) => (
           <div 
             key={idx}
-            className="snap-center shrink-0 w-[220px] aspect-[9/19.5] rounded-2xl bg-black border-2 border-brand-borderStrong overflow-hidden shadow-xl"
+            className="shrink-0 w-[220px] aspect-[9/19.5] rounded-2xl bg-black border-2 border-brand-borderStrong overflow-hidden shadow-xl"
             style={{
               boxShadow: '0 16px 32px -8px rgba(0,0,0,0.7)'
             }}

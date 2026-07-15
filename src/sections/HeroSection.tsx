@@ -108,7 +108,7 @@ export const HeroSection: React.FC = () => {
             e.preventDefault();
             document.querySelector('#download')?.scrollIntoView({ behavior: 'smooth' });
           }}>
-            Download APK
+            Setup Guide
           </MagneticButton>
         </motion.div>
 

@@ -70,3 +70,34 @@ html.lenis body {
   -webkit-text-stroke: 1px #1DB954;
   color: transparent;
 }
+
+/* Playstore Live Pulsing Glow & Shimmer */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(29, 185, 84, 0.25);
+    border-color: rgba(29, 185, 84, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(29, 185, 84, 0.6);
+    border-color: rgba(29, 185, 84, 0.75);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-playstore-glow {
+  animation: pulse-glow 3s infinite ease-in-out;
+}
+
+.animate-shimmer-btn {
+  background: linear-gradient(90deg, #1DB954 0%, #30e36b 25%, #1DB954 50%, #30e36b 75%, #1DB954 100%);
+  background-size: 200% 100%;
+  animation: shimmer-sweep 5s infinite linear;
+}
