@@ -25,7 +25,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!assets/|downloads/|releases\\.json|favicon\\.svg|icons\\.svg|robots\\.txt|sitemap\\.xml|BingSiteAuth\\.xml|google7caded4a504ece39\\.html).*)",
+      "source": "/((?!assets/|downloads/|releases\\.json|favicon\\.svg|favicon-tab\\.jpeg|icons\\.svg|robots\\.txt|sitemap\\.xml|BingSiteAuth\\.xml|google7caded4a504ece39\\.html).*)",
       "destination": "/index.html"
     }
   ]
