@@ -48,6 +48,22 @@ export const Footer: React.FC = () => {
           </a>
 
           <Link 
+            to="/blog"
+            className="flex items-center gap-2 hover:text-brand-textSecondary transition-colors duration-300"
+          >
+            <span>Blog</span>
+          </Link>
+
+          <a 
+            href="https://share.google/TaEYXWGNY0E8ojLbO" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 hover:text-brand-textSecondary transition-colors duration-300 text-brand-primary font-semibold"
+          >
+            <span>Google Share App Link</span>
+          </a>
+
+          <Link 
             to="/terms"
             className="flex items-center gap-2 hover:text-brand-textSecondary transition-colors duration-300"
           >

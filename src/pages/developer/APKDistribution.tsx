@@ -164,6 +164,19 @@ export const APKDistribution: React.FC = () => {
               <div className="font-mono font-bold text-sm text-white group-hover:text-white transition-colors">Get App on Play Store</div>
               <div className="font-mono text-xs text-brand-textMuted mt-1">Official verified store release</div>
             </motion.a>
+
+            <motion.a
+              href="https://share.google/TaEYXWGNY0E8ojLbO"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block dev-glass rounded-2xl p-6 text-center border border-brand-primary/20 hover:border-brand-primary/45 transition-all group cursor-pointer neon-border bg-brand-accentDim/10"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="text-3xl mb-2">🔗</div>
+              <div className="font-mono font-bold text-sm text-white group-hover:text-brand-primary transition-colors">Get via Google Share Link</div>
+              <div className="font-mono text-xs text-brand-textMuted mt-1">Official shared application index</div>
+            </motion.a>
           </div>
         </div>
       </div>

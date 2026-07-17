@@ -36,22 +36,41 @@ export const DownloadSection: React.FC = () => {
               <h3 className="font-sans font-black text-2xl text-white">Google Play</h3>
             </div>
 
-            <div className="w-full relative group/btn">
-              <MagneticButton 
-                variant="primary" 
-                className="!w-full !flex !items-center !justify-center !gap-3.5 !px-6 !py-4.5 !rounded-2xl animate-shimmer-btn text-black font-sans font-black text-xs tracking-wider shadow-[0_12px_24px_-8px_rgba(29,185,84,0.4)] border-transparent"
-                href="https://play.google.com/store/apps/details?id=com.birvana.mobile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" className="shrink-0 fill-current text-black">
-                  <path d="M3.25 2.5v19l8.5-8.5-8.5-8.5z"/>
-                  <path d="M3.25 2.5l8.5 8.5 4.5-4.5-10-6c-.75-.45-2-.25-3 2z"/>
-                  <path d="M3.25 21.5c1 1.2 2.25 1.4 3 1l10-6-4.5-4.5-8.5 9.5z"/>
-                  <path d="M11.75 11l4.5-4.5 4.5 2.5c1 .55 1 1.45 0 2l-4.5 2.5-4.5-4.5z"/>
-                </svg>
-                <span>GET IT ON GOOGLE PLAY</span>
-              </MagneticButton>
+            <div className="w-full flex flex-col gap-3">
+              <div className="w-full relative group/btn">
+                <MagneticButton 
+                  variant="primary" 
+                  className="!w-full !flex !items-center !justify-center !gap-3.5 !px-6 !py-4.5 !rounded-2xl animate-shimmer-btn text-black font-sans font-black text-xs tracking-wider shadow-[0_12px_24px_-8px_rgba(29,185,84,0.4)] border-transparent"
+                  href="https://play.google.com/store/apps/details?id=com.birvana.mobile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" className="shrink-0 fill-current text-black">
+                    <path d="M3.25 2.5v19l8.5-8.5-8.5-8.5z"/>
+                    <path d="M3.25 2.5l8.5 8.5 4.5-4.5-10-6c-.75-.45-2-.25-3 2z"/>
+                    <path d="M3.25 21.5c1 1.2 2.25 1.4 3 1l10-6-4.5-4.5-8.5 9.5z"/>
+                    <path d="M11.75 11l4.5-4.5 4.5 2.5c1 .55 1 1.45 0 2l-4.5 2.5-4.5-4.5z"/>
+                  </svg>
+                  <span>GET IT ON GOOGLE PLAY</span>
+                </MagneticButton>
+              </div>
+
+              <div className="w-full relative">
+                <MagneticButton 
+                  variant="secondary" 
+                  className="!w-full !flex !items-center !justify-center !gap-3.5 !px-6 !py-4.5 !rounded-2xl text-white font-sans font-black text-xs tracking-wider border-white/10 hover:border-brand-primary/40 hover:bg-brand-elevated"
+                  href="https://share.google/TaEYXWGNY0E8ojLbO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 text-brand-primary">
+                    <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+                    <polyline points="16 6 12 2 8 6"/>
+                    <line x1="12" y1="2" x2="12" y2="15"/>
+                  </svg>
+                  <span>GET IT VIA GOOGLE SHARE LINK</span>
+                </MagneticButton>
+              </div>
             </div>
 
             {/* Status list inside compact card */}

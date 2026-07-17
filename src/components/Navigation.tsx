@@ -107,6 +107,14 @@ export const Navigation: React.FC = () => {
               Developer
             </Link>
 
+            <Link
+              to="/blog"
+              className={linkBaseClass}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Blog
+            </Link>
+
             {session?.user?.email?.toLowerCase() === 'birvana.official.in@gmail.com' && (
               <Link
                 to="/admin"
@@ -177,6 +185,14 @@ export const Navigation: React.FC = () => {
           className="font-sans font-semibold text-2xl text-brand-textSecondary hover:text-brand-primary transition-colors duration-300"
         >
           Developer
+        </Link>
+
+        <Link
+          to="/blog"
+          onClick={() => setIsMobileMenuOpen(false)}
+          className="font-sans font-semibold text-2xl text-brand-textSecondary hover:text-brand-primary transition-colors duration-300"
+        >
+          Blog
         </Link>
 
         {session?.user?.email?.toLowerCase() === 'birvana.official.in@gmail.com' && (
